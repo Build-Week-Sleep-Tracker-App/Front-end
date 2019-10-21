@@ -25,8 +25,6 @@ const FormikRegisterForm = withFormik({
       username: username || "",
       birthdate: birthdate || "",
       password: password || "",
-      // currently this is hardcoded to admin so users will have full permissions, should default to "user"
-      role: "admin"
     };
   },
 
@@ -39,7 +37,6 @@ const FormikRegisterForm = withFormik({
   }),
 
   handleSubmit(values, { props }) {
-    console.log(values);
     props.signup(values);
   }
 })(Register);
