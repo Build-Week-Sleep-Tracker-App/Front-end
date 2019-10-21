@@ -16,11 +16,12 @@ function Register(props) {
 }
 
 const FormikRegisterForm = withFormik({
-  mapPropsToValues({ username, birthdate, password }) {
+  mapPropsToValues({ username, birthdate, password}) {
     return {
       username: username || "",
       birthdate: birthdate || "",
-      password: password || ""
+	  password: password || "",
+	  role: "admin",	
     };
   },
 
