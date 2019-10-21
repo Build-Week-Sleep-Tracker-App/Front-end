@@ -1,30 +1,42 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
 
-function Register(props) {
+function Register({ errors, touched }) {
   return (
     <div>
       <h1>Register</h1>
       <Form>
-        <Field type="text" name="username" placeholder="username" />
-        <Field type="password" name="password" placeholder="password" />
-        <Field type="date" name="birthdate" placeholder="birthdate" />
+        <Field type="text" name="username" placeholder="Username" />
+        <Field type="password" name="password" placeholder="Password" />
+        <Field type="date" name="birthdate" placeholder="Birthdate" />
         <button type="submit">Register</button>
+		{touched.username && errors.username && <p>{errors.username}</p>}
+		{touched.password && errors.password && <p>{errors.password}</p>}
+		{touched.date && errors.date && <p>{errors.date}</p>}
       </Form>
     </div>
   );
 }
 
 const FormikRegisterForm = withFormik({
-  mapPropsToValues({ username, birthdate, password}) {
+  mapPropsToValues({ username, birthdate, password }) {
     return {
       username: username || "",
       birthdate: birthdate || "",
-	  password: password || "",
-	  // currently this is hardcoded to admin so users will have full permissions, should default to "user"
-	  role: "admin",	
+      password: password || "",
+      // currently this is hardcoded to admin so users will have full permissions, should default to "user"
+      role: "admin"
     };
   },
+
+  validationSchema: Yup.object().shape({
+	username: Yup.string().required("Username is a required field"),
+	password: Yup.string()
+		.required("Password is a required field")
+		.min(6),
+	birthdate: Yup.date().required("Birthdate is a required field"),
+  }),
 
   handleSubmit(values, { props }) {
     console.log(values);
