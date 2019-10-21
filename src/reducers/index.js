@@ -9,7 +9,7 @@ const initialLoginState = {
 	password: ""
 }
 
-export const signUpReducer = (state = initialSignupState, action) {
+export const signUpReducer = (state = initialSignupState, action) => {
 	switch (action.type) {
 		case types.SIGNUP:
 			return {
