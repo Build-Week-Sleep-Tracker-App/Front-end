@@ -1,7 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux';
  
-export default function SleepEntryForm (props) {
-
+ function SleepEntryForm (props) {
+	console.log(props)
 	return(
 		<div>
 			<h1>Sleep Entry Form</h1>
@@ -9,3 +10,5 @@ export default function SleepEntryForm (props) {
 		</div>
 	)
 }
+
+export default connect(state => state)(SleepEntryForm)

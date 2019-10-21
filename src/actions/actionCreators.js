@@ -20,6 +20,7 @@ export const login = (user, history) => {
 
 export const signup = user => {
   return dispatch => {
+    dispatch({ type: types.SIGNUP });
     axiosWithAuth()
       .post("https://sleeptrack.herokuapp.com/api/register", user)
       .then(res => {
