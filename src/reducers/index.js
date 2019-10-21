@@ -5,7 +5,7 @@ const initialSignupState = {
 	isSignedUp: false,
 }
 
-export const signUpReducer = (state = initialSignupState, action) => {
+const signUpReducer = (state = initialSignupState, action) => {
 	switch (action.type) {
 		case types.SIGNUP:
 			return {
@@ -22,7 +22,7 @@ const initialLoginState = {
 	password: ""
 }
 
-export const loginReducer = (state = initialLoginState, action) => {
+const loginReducer = (state = initialLoginState, action) => {
 	switch(action.type) {
 		case types.LOGIN:
 			return state;
@@ -76,6 +76,9 @@ const sleepFormReducer = (state = initialSleepFormState, action) => {
 }
 
 export default {
+	initialSignupState,
+	signUpReducer,
+
 	initialLoginState,
 	loginReducer,
 

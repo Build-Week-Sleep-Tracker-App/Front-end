@@ -2,15 +2,15 @@ import React from 'react';
 import Login from './Login';
 import Register from './Register';
 import { connect } from 'react-redux'
-import { signup, login } from '../actions/actionCreators'
+import { signUp, login } from '../actions/actionCreators'
 
-const LoginPage = ( props ) => {
+const LoginPage = (props) => {
     return (
         <div>
             <Login login={props.login} history={props.history}/>
-            <Register signup={props.signup}/>
+            <Register signUp={props.signUp}/>
         </div>
     );
 }
  
-export default connect(state=>state, { signup, login })(LoginPage);
+export default connect(state => state, { signUp, login })(LoginPage);
