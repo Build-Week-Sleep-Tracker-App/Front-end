@@ -2,6 +2,7 @@ import React from 'react'
 import { withFormik, Form, Field } from 'formik';
 
 function Login (props) {
+	console.log(props)
 	return(
 		<div>
 			<h1>Login</h1>
@@ -22,8 +23,9 @@ const FormikLoginForm = withFormik({
 	  };
 	},
   
-	handleSubmit(values) {
+	handleSubmit(values, { props }) {
 	  console.log(values);
+	  props.login(values, props.history)
 	}
   })(Login);
 

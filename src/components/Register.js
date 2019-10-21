@@ -1,7 +1,5 @@
 import React from 'react'
 import { withFormik, Form, Field } from 'formik';
-import { signUp } from '../actions/actionCreators'
-import { connect } from 'react-redux';
 
 function Register (props) {
 	return(
@@ -29,8 +27,8 @@ const FormikRegisterForm = withFormik({
   
 	handleSubmit(values, { props }) {
 	  console.log(values);
-	  props.signUp(values)
+	  props.signup(values)
 	}
   })(Register);
 
-export default connect(state => state, { signUp } )(FormikRegisterForm);
+export default FormikRegisterForm;
