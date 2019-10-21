@@ -27,7 +27,7 @@ const FormikRegisterForm = withFormik({
       username: username || "",
       birthdate: birthdate || "",
 	  password: password || "",
-	  confirmPassword: confirmPassword || "",
+	  confirmPassword: confirmPassword,
     };
   },
 
@@ -41,7 +41,8 @@ const FormikRegisterForm = withFormik({
   }),
 
   handleSubmit(values, { props }) {
-    props.signup(values);
+	console.log(props);
+    props.signUp(values);
   }
 })(Register);
 
