@@ -7,7 +7,7 @@ import { signup, login } from '../actions/actionCreators'
 const LoginPage = ( props ) => {
     return (
         <div>
-            <Login login={props.login}/>
+            <Login login={props.login} history={props.history}/>
             <Register signup={props.signup}/>
         </div>
     );

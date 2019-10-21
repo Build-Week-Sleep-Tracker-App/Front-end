@@ -2,6 +2,7 @@ import React from 'react'
 import { withFormik, Form, Field } from 'formik';
 
 function Login (props) {
+	// couldn't figure out how to access react router history prop without using this hook
 	console.log(props)
 	return(
 		<div>
@@ -24,7 +25,7 @@ const FormikLoginForm = withFormik({
 	},
   
 	handleSubmit(values, { props }) {
-	  console.log(values);
+	  console.log(props);
 	  props.login(values, props.history)
 	}
   })(Login);
