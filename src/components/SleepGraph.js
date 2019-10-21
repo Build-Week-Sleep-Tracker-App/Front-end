@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { axiosWithAuth } from '../utils/index';
+import axios from 'axios'
 import moment from "moment";
 import {
   LineChart,
@@ -40,8 +42,21 @@ const formatXAxis = tick => {
   return moment(tick).format("MMM Do YYYY");
 };
 
+const querySleepData = () => {
+	const currentUserId = localStorage.getItem("sleep_tracker_user_id")
+	axiosWithAuth().get(`https://sleeptrack.herokuapp.com/api/user/${currentUserId}`)
+		.then(res => {
+			console.log(res.data);
+		})
+		.catch(err => {
+			console.log(err);
+		})
+}
+
+querySleepData()
 
 export default function SleepGraph(props) {
+  	console.log(props)
   return (
     <div>
       <h1>Sleep Graph</h1>
