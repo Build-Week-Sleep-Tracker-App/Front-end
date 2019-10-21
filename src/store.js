@@ -4,7 +4,8 @@ import * as reducers from './reducers';
 const store = createStore(
 	// reducers
 	combineReducers({
-		login: reducers.loginReducer
+		login: reducers.loginReducer,
+		register: reducers.signUpReducer
 	}),
 	// local storage ?
 	// middleware

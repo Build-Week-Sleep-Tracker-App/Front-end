@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 
 export function axiosWithAuth() {

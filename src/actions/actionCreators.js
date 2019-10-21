@@ -7,7 +7,7 @@ export const login = () => {
 	}
 }
 
-export const signUp	= ( user, history ) {
+export const signUp	= ( user, history ) => {
 	return dispatch => {
 		axiosWithAuth()
 			.post(
