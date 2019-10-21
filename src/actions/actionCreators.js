@@ -1,11 +1,21 @@
 import types from './actionTypes';
 import moment from 'moment';
-import axiosWithAuth from '../helpers/axiosWithAuth';
+import { axiosWithAuth } from '../utils';
 
 export const login = () => {
 	return {
 		type: types.LOGIN
 	}
+}
+
+export const signUp = (user) => dispatch => {
+	axiosWithAuth().post('https://sleeptrack.herokuapp.com/api/register', user)
+		.then(res => {
+			console.log(res)
+		})
+		.catch(err => {
+			console.log(err)
+		})
 }
 
 export const setLoading = (isLoading) => {
@@ -41,46 +51,46 @@ export const addSleepEntry = entry => dispatch => {
 	entry.difference = moment(entry.end).diff(moment(entry.start), 'hours');
 	console.log('addSleepEntry request', entry);
 	axiosWithAuth().post(`/api/sleepData`, entry)
-	.then(response => {
-		console.log(response.data);
-		// do stuff with response here
-		dispatch(setLoading(false));
-	})
-	.catch(err => {
-		console.log(err);
-		dispatch(setLoading(false));
-		dispatch(setGlobalError(err.message));
-	});
+		.then(response => {
+			console.log(response.data);
+			// do stuff with response here
+			dispatch(setLoading(false));
+		})
+		.catch(err => {
+			console.log(err);
+			dispatch(setLoading(false));
+			dispatch(setGlobalError(err.message));
+		});
 }
 
 export const editSleepEntry = entry => dispatch => {
 	dispatch(setLoading(true));
 	console.log('editSleepEntry request', entry);
 	axiosWithAuth().put(`/api/sleepData/${entry.id}`, entry)
-	.then(response => {
-		console.log(response.data);
-		// do stuff with response here
-		dispatch(setLoading(false));
-	})
-	.catch(err => {
-		console.log(err);
-		dispatch(setLoading(false));
-		dispatch(setGlobalError(err.message));
-	});
+		.then(response => {
+			console.log(response.data);
+			// do stuff with response here
+			dispatch(setLoading(false));
+		})
+		.catch(err => {
+			console.log(err);
+			dispatch(setLoading(false));
+			dispatch(setGlobalError(err.message));
+		});
 }
 
 export const deleteSleepEntry = entry => dispatch => {
 	dispatch(setLoading(true));
 	console.log('deleteSleepEntry request', entry);
 	axiosWithAuth().put(`/api/sleepData/${entry.id}`, entry)
-	.then(response => {
-		console.log(response.data);
-		// do stuff with response here
-		dispatch(setLoading(false));
-	})
-	.catch(err => {
-		console.log(err);
-		dispatch(setLoading(false));
-		dispatch(setGlobalError(err.message));
-	});
+		.then(response => {
+			console.log(response.data);
+			// do stuff with response here
+			dispatch(setLoading(false));
+		})
+		.catch(err => {
+			console.log(err);
+			dispatch(setLoading(false));
+			dispatch(setGlobalError(err.message));
+		});
 }

@@ -5,6 +5,7 @@ const store = createStore(
 	// reducers
 	combineReducers({
 		login: reducers.loginReducer,
+		register: reducers.signUpReducer,
 		user: reducers.userReducer,
 		sleepForm: reducers.sleepFormReducer
 	}),

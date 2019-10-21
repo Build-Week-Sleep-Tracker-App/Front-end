@@ -1,12 +1,29 @@
 import types from '../actions/actionTypes';
 import moment from 'moment';
 
+const initialSignupState = {
+	isSignedUp: false,
+}
+
+export const signUpReducer = (state = initialSignupState, action) => {
+	switch (action.type) {
+		case types.SIGNUP:
+			return {
+				...state,
+				isSignedUp: true,
+			}
+			default:
+				return state;
+	}
+}
+
 const initialLoginState = {
 	username: "",
 	password: ""
 }
-const loginReducer = (state = initialLoginState, action) => {
-	switch (action.type) {
+
+export const loginReducer = (state = initialLoginState, action) => {
+	switch(action.type) {
 		case types.LOGIN:
 			return state;
 		default:

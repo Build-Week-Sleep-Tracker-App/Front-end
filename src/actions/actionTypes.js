@@ -1,4 +1,5 @@
 const LOGIN = 'LOGIN';
+const SIGNUP = 'SIGNUP';
 const LOADING = 'LOADING';
 const SET_USER = 'SET_USER';
 const SET_ERROR = 'SET_ERROR';
@@ -6,6 +7,7 @@ const ON_CHANGE_SLEEP_FORM = 'ON_CHANGE_SLEEP_FORM';
 
 export default {
 	LOGIN,
+	SIGNUP,
 	LOADING,
 	SET_USER,
 	SET_ERROR,
