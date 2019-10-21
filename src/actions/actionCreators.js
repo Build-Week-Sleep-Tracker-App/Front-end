@@ -62,7 +62,7 @@ export const addSleepEntry = entry => dispatch => {
 	dispatch(setLoading(true));
 	entry.difference = moment(entry.end).diff(moment(entry.start), 'hours');
 	console.log('addSleepEntry request', entry);
-	axiosWithAuth().post(`/api/sleepData`, entry)
+	axiosWithAuth().post(`https://sleeptrack.herokuapp.com/api/sleepData`, entry)
 		.then(response => {
 			console.log(response.data);
 			// do stuff with response here
