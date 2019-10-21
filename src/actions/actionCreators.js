@@ -1,17 +1,29 @@
-import types from './actionTypes';
+import * as types from "./actionTypes";
 import moment from 'moment';
-import { axiosWithAuth } from '../utils';
+import { axiosWithAuth } from "../utils";
 
-export const login = () => {
-	return {
-		type: types.LOGIN
-	}
-}
+export const login = (user, history) => {
+  return dispatch => {
+    dispatch({ type: types.LOGIN_START });
+    axiosWithAuth()
+      .post("https://sleeptrack.herokuapp.com/api/login", user)
+      .then(res => {
+        localStorage.setItem("sleep_tracker_token", res.data.token);
+        localStorage.setItem("sleep_tracker_user_id", res.data.id);
+        dispatch({ type: types.LOGIN, payload: res.data.id})
+        history.push("/sleepentryform");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
 
 export const signUp = (user) => dispatch => {
 	axiosWithAuth().post('https://sleeptrack.herokuapp.com/api/register', user)
 		.then(res => {
 			console.log(res)
+			dispatch({ type: types.SIGNUP });
 		})
 		.catch(err => {
 			console.log(err)

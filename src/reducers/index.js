@@ -1,35 +1,47 @@
-import types from '../actions/actionTypes';
+import * as types from '../actions/actionTypes';
 import moment from 'moment';
 
 const initialSignupState = {
-	isSignedUp: false,
-}
+	isSignedUp: false
+};
 
-const signUpReducer = (state = initialSignupState, action) => {
+export const signUpReducer = (state = initialSignupState, action) => {
 	switch (action.type) {
 		case types.SIGNUP:
 			return {
 				...state,
-				isSignedUp: true,
-			}
-			default:
-				return state;
-	}
-}
-
-const initialLoginState = {
-	username: "",
-	password: ""
-}
-
-const loginReducer = (state = initialLoginState, action) => {
-	switch(action.type) {
-		case types.LOGIN:
-			return state;
+				isSignedUp: true
+			};
 		default:
 			return state;
 	}
+};
+
+const initialLoginState = {
+	isLoggingIn: false,
+	isLoggedIn: false,
+	userID: null
 }
+
+export const loginReducer = (state = initialLoginState, action) => {
+	switch (action.type) {
+		case types.LOGIN_START:
+			return {
+				...state,
+				isLoggingIn: true,
+			}
+		case types.LOGIN:
+			return {
+				...state,
+				isLoggingIn: false,
+				isLoggedIn: true,
+				userID: action.payload,
+			};
+		default:
+			return state;
+	}
+};
+
 
 const initialUserState = {
 	"id": "",
@@ -49,7 +61,7 @@ const userReducer = (state = initialUserState, action) => {
 
 const today = moment().format('YYYY-MM-DDTHH:mm');
 const initialSleepFormState = {
-	"userID": "", // update on login or access (even if auto logs in from token)
+	"userID": localStorage.getItem("sleep_tracker_user_id"), // update on login or access (even if auto logs in from token)
 	"start": today,
 	"end": today,
 	"difference": "",
