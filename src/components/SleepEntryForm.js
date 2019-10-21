@@ -6,33 +6,35 @@ import moment from 'moment';
 const SleepEntryForm = ({ sleepForm, addSleepEntry, changeSleepEntryForm }) => {
 	const addEntry = (e) => {
 		e.preventDefault();
-		const form = Object.values(e.target).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {});
-		addSleepEntry(form);
+		addSleepEntry(sleepForm);
 	}
 	const onInputChange = (e) => {
 		const isDate = e.target.name === 'start' || e.target.name === 'end';
+		console.log(isDate ? moment(e.target.value).format('DD-MM-YYYYTHH:mm') : e.target.value)
 		changeSleepEntryForm({
-			[e.target.name]: (isDate ? moment(e.target.value).format('DD/MM/YYYY HH:mm') : e.target.value),
-		})
+			[e.target.name]: e.target.value,
+		});
 	}
-	return(
+	return (
 		<form onSubmit={addEntry}>
 			<label htmlFor="">start</label>
 			<br/>
 			<input
-			name="start"
-			type="datetime-local"
-			value={moment(sleepForm.start).format('YYYY/MM/DDTHH:mm')}
-			onChange={onInputChange}
+				name="start"
+				type="datetime-local"
+				value={sleepForm.start ? moment(sleepForm.start).format('YYYY-MM-DDTHH:mm') : sleepForm.start}
+				onChange={onInputChange}
+				pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}T[0-9]{2}:[0-9]{2}"
 			/>
 			<br/>
 			<label htmlFor="">end</label>
 			<br/>
 			<input
-			name="end"
-			type="datetime-local"
-			value={moment(sleepForm.end).format('YYYY/MM/DDTHH:mm')}
-			onChange={onInputChange}
+				name="end"
+				type="datetime-local"
+				value={sleepForm.end ? moment(sleepForm.end).format('YYYY-MM-DDTHH:mm') : sleepForm.end}
+				onChange={onInputChange}
+				pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}T[0-9]{2}:[0-9]{2}"
 			/>
 			<br/>
 			<label htmlFor="">Emoji1</label>
@@ -51,7 +53,7 @@ const SleepEntryForm = ({ sleepForm, addSleepEntry, changeSleepEntryForm }) => {
 			<br/>
 			<label htmlFor="">Emoji3</label>
 			<br/>
-			<input name="average_rating" type="radio" value={1} onChange={onInputChange}/>
+			<input name="average_rating" type="radio" value={1} onChange={onInputChange} />
 			<input name="average_rating" type="radio" value={2} onChange={onInputChange} />
 			<input name="average_rating" type="radio" value={3} onChange={onInputChange} />
 			<input name="average_rating" type="radio" value={4} onChange={onInputChange} />

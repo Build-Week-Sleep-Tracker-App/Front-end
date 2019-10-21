@@ -1,4 +1,5 @@
 import types from './actionTypes';
+import moment from 'moment';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 
 export const login = () => {
@@ -37,6 +38,7 @@ export const changeSleepEntryForm = field => {
 
 export const addSleepEntry = entry => dispatch => {
 	dispatch(setLoading(true));
+	entry.difference = moment(entry.end).diff(moment(entry.start), 'hours');
 	console.log('addSleepEntry request', entry);
 	axiosWithAuth().post(`/api/sleepData`, entry)
 	.then(response => {
