@@ -30,8 +30,9 @@ const FormikLoginForm = withFormik({
 	  password: Yup.string().required("Please enter your password"),
   }),	
 
-  handleSubmit(values, { props }) {
+  handleSubmit(values, { props, resetForm }) {
     props.login(values, props.history);
+    resetForm();
   }
 })(Login);
 
