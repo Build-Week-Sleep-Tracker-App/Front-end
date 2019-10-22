@@ -40,7 +40,7 @@ export const loadState = (keys) => {
 				return serialSt;
 			}, {})
 		} else {
-			serializedState = localStorage.getItem('state');
+			serializedState = localStorage.getItem('sleep_tracker_state');
 		}
 		if (serializedState === null || Object.values(serializedState).includes(null)) {
 			return undefined;
@@ -61,7 +61,7 @@ export const saveState = (state, keys) => {
 			});
 		} else {
 			serializedState = JSON.stringify(state);
-			localStorage.setItem('state', serializedState);
+			localStorage.setItem('sleep_tracker_state', serializedState);
 		}
 	} catch (err) {
 		throw new Error('Not able to set local storage: ', err);

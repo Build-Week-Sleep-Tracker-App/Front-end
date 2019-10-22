@@ -24,7 +24,7 @@ const store = createStore(
 );
 
 store.subscribe(throttle(() => {
-	saveState(store.getState().user, persistedStateKeysInLocalStorage)
+	saveState(store.getState(), persistedStateKeysInLocalStorage)
 }, 1000));
 
 export default store;

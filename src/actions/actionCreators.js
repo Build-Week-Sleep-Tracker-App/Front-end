@@ -46,6 +46,27 @@ export const setUser = (data) => {
 	}
 }
 
+const addUserSleepEntry = (entry) => {
+	return {
+		type: types.ADD_SLEEP_ENTRY,
+		payload: entry,
+	}
+}
+
+const editUserSleepEntry = (entry) => {
+	return {
+		type: types.EDIT_SLEEP_ENTRY,
+		payload: entry,
+	}
+}
+
+const deleteUserSleepEntry = (id) => {
+	return {
+		type: types.DELETE_SLEEP_ENTRY,
+		payload: id,
+	}
+}
+
 export const setGlobalError = (error) => {
 	return {
 		type: types.SET_ERROR,
@@ -61,11 +82,13 @@ export const changeSleepEntryForm = field => {
 }
 
 export const addSleepEntry = entry => dispatch => {
-	dispatch(setLoading(true));
+	//dispatch(setLoading(true));
 	entry.difference = moment(entry.end).diff(moment(entry.start), 'hours');
 	entry.start = entry.start.replace('T', ' ');
 	entry.end = entry.end.replace('T', ' ');
 	console.log('addSleepEntry request', entry);
+	dispatch(addUserSleepEntry(entry))
+	/*
 	axiosWithAuth().post(`/api/sleepData`, entry)
 		.then(response => {
 			console.log('response', response.data);
@@ -77,11 +100,14 @@ export const addSleepEntry = entry => dispatch => {
 			dispatch(setLoading(false));
 			dispatch(setGlobalError(err.message));
 		});
+	*/
 }
 
 export const editSleepEntry = entry => dispatch => {
-	dispatch(setLoading(true));
+	//dispatch(setLoading(true));
 	console.log('editSleepEntry request', entry);
+	editUserSleepEntry(entry);
+	/*
 	axiosWithAuth().put(`/api/sleepData/${entry.id}`, entry)
 		.then(response => {
 			console.log(response.data);
@@ -93,11 +119,14 @@ export const editSleepEntry = entry => dispatch => {
 			dispatch(setLoading(false));
 			dispatch(setGlobalError(err.message));
 		});
+	*/
 }
 
-export const deleteSleepEntry = entry => dispatch => {
-	dispatch(setLoading(true));
-	console.log('deleteSleepEntry request', entry);
+export const deleteSleepEntry = id => dispatch => {
+	//dispatch(setLoading(true));
+	console.log('deleteSleepEntry request', id);
+	deleteUserSleepEntry(id);
+	/*
 	axiosWithAuth().delete(`/api/sleepData/${entry.id}`)
 		.then(response => {
 			console.log(response.data);
@@ -109,6 +138,7 @@ export const deleteSleepEntry = entry => dispatch => {
 			dispatch(setLoading(false));
 			dispatch(setGlobalError(err.message));
 		});
+	*/
 }
 
 export const getUser = () => dispatch => {

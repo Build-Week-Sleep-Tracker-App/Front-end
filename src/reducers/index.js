@@ -55,8 +55,28 @@ const userReducer = (state = initialUserState, action) => {
 	switch (action.type) {
 		case types.SET_USER:
 			return {
+				...state,
+				...action.payload,
 				"id": getUserID(),
-				...action.payload
+			};
+		case types.ADD_SLEEP_ENTRY:
+			sleepEntryID++;
+			return {
+				...state,
+				sleepData: [...state.sleepData, { ...action.payload, "id": sleepEntryID }]
+			};
+		case types.EDIT_SLEEP_ENTRY:
+			return {
+				...state,
+				sleepData: state.sleepData.map(entry => {
+					if (entry.id === action.payload.id) return action.payload;
+					return entry;
+				})
+			};
+		case types.DELETE_SLEEP_ENTRY:
+			return {
+				...state,
+				sleepData: state.sleepData.filter(entry => entry.id !== action.payload)
 			};
 		default:
 			return state;
@@ -65,14 +85,16 @@ const userReducer = (state = initialUserState, action) => {
 
 const dateStart = moment().format('YYYY-MM-DDTHH:mm');
 const dateEnd = moment().add(7, 'hours').format('YYYY-MM-DDTHH:mm');
+let sleepEntryID = 0;
 const initialSleepFormState = {
+	"id": 0,
 	"userID": getUserID(),
 	"start": dateStart,
 	"end": dateEnd,
-	"difference": 0,
-	"bed_t_tracking": "1",
-	"work_t_tracking": "1",
-	"average_rating": "1",
+	"difference": 7,
+	"bed_t_tracking": 1,
+	"work_t_tracking": 1,
+	"average_rating": 1,
 };
 const sleepFormReducer = (state = initialSleepFormState, action) => {
 	switch (action.type) {

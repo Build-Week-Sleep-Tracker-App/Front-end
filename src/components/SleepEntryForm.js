@@ -42,24 +42,24 @@ const SleepEntryForm = ({ sleepForm, addSleepEntry, changeSleepEntryForm, getUse
 			<br />
 			<label htmlFor="">Emoji1</label>
 			<br />
-			<input name="bed_t_tracking" type="radio" value={"1"} onChange={onInputChange} checked={sleepForm.bed_t_tracking === 1 ? 'checked' : false} />
-			<input name="bed_t_tracking" type="radio" value={"2"} onChange={onInputChange} checked={sleepForm.bed_t_tracking === 2 ? 'checked' : false} />
-			<input name="bed_t_tracking" type="radio" value={"3"} onChange={onInputChange} checked={sleepForm.bed_t_tracking === 3 ? 'checked' : false} />
-			<input name="bed_t_tracking" type="radio" value={"4"} onChange={onInputChange} checked={sleepForm.bed_t_tracking === 4 ? 'checked' : false} />
+			<input name="bed_t_tracking" type="radio" value={1} onChange={onInputChange} checked={sleepForm.bed_t_tracking === 1 ? 'checked' : false} />
+			<input name="bed_t_tracking" type="radio" value={2} onChange={onInputChange} checked={sleepForm.bed_t_tracking === 2 ? 'checked' : false} />
+			<input name="bed_t_tracking" type="radio" value={3} onChange={onInputChange} checked={sleepForm.bed_t_tracking === 3 ? 'checked' : false} />
+			<input name="bed_t_tracking" type="radio" value={4} onChange={onInputChange} checked={sleepForm.bed_t_tracking === 4 ? 'checked' : false} />
 			<br />
 			<label htmlFor="">Emoji2</label>
 			<br />
-			<input name="work_t_tracking" type="radio" value={"1"} onChange={onInputChange} checked={sleepForm.work_t_tracking === 1 ? 'checked' : false} />
-			<input name="work_t_tracking" type="radio" value={"2"} onChange={onInputChange} checked={sleepForm.work_t_tracking === 2 ? 'checked' : false} />
-			<input name="work_t_tracking" type="radio" value={"3"} onChange={onInputChange} checked={sleepForm.work_t_tracking === 3 ? 'checked' : false} />
-			<input name="work_t_tracking" type="radio" value={"4"} onChange={onInputChange} checked={sleepForm.work_t_tracking === 4 ? 'checked' : false} />
+			<input name="work_t_tracking" type="radio" value={1} onChange={onInputChange} checked={sleepForm.work_t_tracking === 1 ? 'checked' : false} />
+			<input name="work_t_tracking" type="radio" value={2} onChange={onInputChange} checked={sleepForm.work_t_tracking === 2 ? 'checked' : false} />
+			<input name="work_t_tracking" type="radio" value={3} onChange={onInputChange} checked={sleepForm.work_t_tracking === 3 ? 'checked' : false} />
+			<input name="work_t_tracking" type="radio" value={4} onChange={onInputChange} checked={sleepForm.work_t_tracking === 4 ? 'checked' : false} />
 			<br />
 			<label htmlFor="">Emoji3</label>
 			<br />
-			<input name="average_rating" type="radio" value={"1"} onChange={onInputChange} checked={sleepForm.average_rating === 1 ? 'checked' : false} />
-			<input name="average_rating" type="radio" value={"2"} onChange={onInputChange} checked={sleepForm.average_rating === 2 ? 'checked' : false} />
-			<input name="average_rating" type="radio" value={"3"} onChange={onInputChange} checked={sleepForm.average_rating === 3 ? 'checked' : false} />
-			<input name="average_rating" type="radio" value={"4"} onChange={onInputChange} checked={sleepForm.average_rating === 4 ? 'checked' : false} />
+			<input name="average_rating" type="radio" value={1} onChange={onInputChange} checked={sleepForm.average_rating === 1 ? 'checked' : false} />
+			<input name="average_rating" type="radio" value={2} onChange={onInputChange} checked={sleepForm.average_rating === 2 ? 'checked' : false} />
+			<input name="average_rating" type="radio" value={3} onChange={onInputChange} checked={sleepForm.average_rating === 3 ? 'checked' : false} />
+			<input name="average_rating" type="radio" value={4} onChange={onInputChange} checked={sleepForm.average_rating === 4 ? 'checked' : false} />
 			<br />
 			<button type="submit">Submit</button>
 		</form>
