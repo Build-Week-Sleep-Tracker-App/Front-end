@@ -94,7 +94,7 @@ export default function SleepGraphs(props) {
   return (
     <div>
       <h1>Hours of sleep over time</h1>
-      <LineChart width={1000} height={400} data={dummySleepData} margin={{ bottom: 20, right: 20}}>
+      <LineChart width={1000} height={400} data={dummySleepData} margin={{ bottom: 100, right: 20}}>
         <Line type="monotone" dataKey="hours" stroke="rgba(29, 161, 242, 1)" />
         <CartesianGrid stroke="ccc" />
         <XAxis dataKey="end" tickFormatter={formatXAxis}>
@@ -105,14 +105,17 @@ export default function SleepGraphs(props) {
 		</YAxis>
         <Tooltip />
       </LineChart>
-    </div>
+	  
+	  <h1>Average mood score versus hours of sleep</h1>
+	  <ScatterChart width={1000} height={400} data={dummySleepData} margin={{ top: 20, bottom: 20, right: 20}}>
+		  <CartesianGrid />
+		  <XAxis dataKey="hours" name="Hours of sleep" type="number" tickCount="10"/>
+		  <YAxis dataKey="average_rating" name="Mood score"/>
+		  <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+		  <Legend />
+		  <Scatter name="Mood Score" data={dummySleepData} fill="rgba(248, 85, 101, 1)" />
+	  </ScatterChart>
+	</div>
   );
 }
 
-export function SleepMoodScatterGraph(props) {
-	return (
-		<div>
-			<h1>Average mood score versus hours of sleep</h1>
-		</div>
-	)
-}
