@@ -4,13 +4,6 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { NavLink } from 'react-router-dom'
 import logo from './logo.svg'
 
-// check if user is authenticated
-const isAuthenticated = () => {
-  const token = localStorage.getItem('token')
-  return token ? true : false
-}
-console.log(isAuthenticated())
-
 const Header = () => (
   <div>
     <Navbar bg="dark" variant="dark" expand="sm">
@@ -31,15 +24,12 @@ const Header = () => (
         <LinkContainer to="/sleepentryform">
           <Button variant="link">Sleep Entry Form</Button>
         </LinkContainer>
-        {isAuthenticated() ? (
-          <LinkContainer to="/logout">
-            <Button variant="link">Logout</Button>
-          </LinkContainer>
-        ) : (
-          <LinkContainer to="/">
-            <Button variant="link">Login</Button>
-          </LinkContainer>
-        )}
+        <LinkContainer to="/logout">
+          <Button variant="link">Logout</Button>
+        </LinkContainer>
+        <LinkContainer to="/">
+          <Button variant="link">Login</Button>
+        </LinkContainer>
       </Navbar.Collapse>
     </Navbar>
   </div>
