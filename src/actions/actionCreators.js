@@ -86,7 +86,6 @@ export const addSleepEntry = entry => dispatch => {
 	entry.difference = moment(entry.end).diff(moment(entry.start), 'hours');
 	entry.start = entry.start.replace('T', ' ');
 	entry.end = entry.end.replace('T', ' ');
-	console.log('addSleepEntry request', entry);
 	dispatch(addUserSleepEntry(entry))
 	/*
 	axiosWithAuth().post(`/api/sleepData`, entry)

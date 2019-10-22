@@ -11,7 +11,6 @@ const store = createStore(
 		login: reducers.loginReducer,
 		register: reducers.signUpReducer,
 		user: reducers.userReducer,
-		sleepForm: reducers.sleepFormReducer
 	}),
 	// local storage
 	loadState(persistedStateKeysInLocalStorage),

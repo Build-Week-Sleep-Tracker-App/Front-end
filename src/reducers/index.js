@@ -43,7 +43,7 @@ export const loginReducer = (state = initialLoginState, action) => {
 	}
 };
 
-
+let sleepEntryID = 0;
 const initialUserState = {
 	"id": "",
 	"username": "",
@@ -57,13 +57,25 @@ const userReducer = (state = initialUserState, action) => {
 			return {
 				...state,
 				...action.payload,
-				"id": getUserID(),
+				id: getUserID(),
 			};
 		case types.ADD_SLEEP_ENTRY:
 			sleepEntryID++;
+			console.log('addSleepEntry request', {
+				...action.payload,
+				id: sleepEntryID,
+				userID: getUserID()
+			});
 			return {
 				...state,
-				sleepData: [...state.sleepData, { ...action.payload, "id": sleepEntryID }]
+				sleepData: [
+					...state.sleepData, 
+					{
+						id: sleepEntryID,
+						userID: getUserID(),
+						...action.payload,
+					}
+				]
 			};
 		case types.EDIT_SLEEP_ENTRY:
 			return {
@@ -83,36 +95,6 @@ const userReducer = (state = initialUserState, action) => {
 	}
 }
 
-const dateStart = moment().format('YYYY-MM-DDTHH:mm');
-const dateEnd = moment().add(7, 'hours').format('YYYY-MM-DDTHH:mm');
-let sleepEntryID = 0;
-const initialSleepFormState = {
-	"id": 0,
-	"userID": getUserID(),
-	"start": dateStart,
-	"end": dateEnd,
-	"difference": 7,
-	"bed_t_tracking": 1,
-	"work_t_tracking": 1,
-	"average_rating": 1,
-};
-const sleepFormReducer = (state = initialSleepFormState, action) => {
-	switch (action.type) {
-		case types.SET_USER:
-			return {
-				...state,
-				"userID": getUserID(),
-			}
-		case types.ON_CHANGE_SLEEP_FORM:
-			return {
-				...state,
-				...action.payload
-			}
-		default:
-			return state;
-	}
-}
-
 export default {
 	initialSignupState,
 	signUpReducer,
@@ -122,7 +104,4 @@ export default {
 
 	initialUserState,
 	userReducer,
-
-	initialSleepFormState,
-	sleepFormReducer,
 }
