@@ -94,6 +94,18 @@ const userReducer = (state = initialUserState, action) => {
 	}
 }
 
+const editEntryReducer = (state = 0, action) => {
+	switch (action.type) {
+		case types.START_EDIT_SLEEP_ENTRY:
+			return action.payload.id;
+		case types.ADD_SLEEP_ENTRY:
+		case types.EDIT_SLEEP_ENTRY:
+			return 0;
+		default:
+			return state;
+	}
+}
+
 export default {
 	initialSignupState,
 	signUpReducer,
@@ -103,4 +115,6 @@ export default {
 
 	initialUserState,
 	userReducer,
+
+	editEntryReducer
 }

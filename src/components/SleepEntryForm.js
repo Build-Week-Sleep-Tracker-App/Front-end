@@ -5,10 +5,24 @@ import moment from 'moment';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
 
-const SleepEntryForm = ({ errors, touched, getUser }) => {
+const SleepEntryForm = ({ setValues, errors, touched, isEditingEntry, user, getUser }) => {
 	useEffect(() => {
-		getUser();
-	}, [getUser])
+		if (!user.id) {
+			getUser();
+		}
+		if (isEditingEntry > 0) {
+			let editEntry = user.sleepData.find(entry => entry.id === isEditingEntry);
+			editEntry = {
+				start: moment(editEntry.start).format('YYYY-MM-DDTHH:mm'),
+				end: moment(editEntry.end).format('YYYY-MM-DDTHH:mm'),
+				bed_t_tracking: Number(editEntry.bed_t_tracking),
+				work_t_tracking: Number(editEntry.work_t_tracking),
+				average_rating: Number(editEntry.average_rating),
+			}
+			setValues(editEntry);
+			// doesnt update every button click
+		}
+	}, [getUser, isEditingEntry])
 	return (
 		<Form>
 			<Field type="datetime-local" name="start" />
@@ -47,7 +61,10 @@ const SleepEntryForm = ({ errors, touched, getUser }) => {
 const dateStart = moment();
 const dateEnd = moment().add(7, 'hours');
 const SleepEntryFormik = withFormik({
+	enableReinitialize: true,
+	displayName: 'SleepEntryForm',
 	mapPropsToValues({ start, end, bed_t_tracking, work_t_tracking, average_rating }) {
+		console.log("mapPropsToValues")
 		return {
 			start: (moment(start) || dateStart).format('YYYY-MM-DDTHH:mm'),
 			end: (moment(end) || dateEnd).format('YYYY-MM-DDTHH:mm'),
@@ -63,12 +80,15 @@ const SleepEntryFormik = withFormik({
 		work_t_tracking: Yup.number().min(1).max(4).required("Please enter your mood after waking up"),
 		average_rating: Yup.number().min(1).max(4).required("Please enter your average mood during the day"),
 	}),
-	handleSubmit(values, { props, resetForm }) {
+	handleSubmit(values, { props, resetForm, setValues }) {
 		console.log(props);
-		props.addSleepEntry(values);
+		if (props.isEditing > 0) {
+			props.editSleepEntry(values);
+		} else {
+			props.addSleepEntry(values);
+		}
 		resetForm();
-	},
-	displayName: 'SleepEntryForm'
+	}
 })(SleepEntryForm)
 
 export default connect(state => state, actionCreators)(SleepEntryFormik);

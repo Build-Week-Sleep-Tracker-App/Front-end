@@ -3,7 +3,13 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 
-const SleepEntryList = ({ user, editSleepEntry, deleteSleepEntry }) => {
+const SleepEntryList = ({ user, startEditSleepEntry, deleteSleepEntry }) => {
+	const onEditEntry = entry => e =>{
+		startEditSleepEntry(entry);
+	}
+	const onDeleteEntry = id => e =>{
+		deleteSleepEntry(id);
+	}
 	return (
 		<div className="sleepEntryList">
 			{
@@ -14,9 +20,10 @@ const SleepEntryList = ({ user, editSleepEntry, deleteSleepEntry }) => {
 					<div><b>Before sleep</b> {entry.bed_t_tracking}</div>
 					<div><b>After waking up</b> {entry.work_t_tracking}</div>
 					<div><b>During the day</b> {entry.average_rating}</div>
+					<button onClick={onEditEntry(entry)}>Edit entry</button>
+					<button onClick={onDeleteEntry(entry.id)}>Delete entry</button>
 				</div>)
 			}
-			
 		</div>
 	)
 }

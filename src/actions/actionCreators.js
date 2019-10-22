@@ -60,6 +60,13 @@ const editUserSleepEntry = (entry) => {
 	}
 }
 
+export const startEditSleepEntry = (entry) => {
+	return {
+		type: types.START_EDIT_SLEEP_ENTRY,
+		payload: entry,
+	}
+}
+
 const deleteUserSleepEntry = (id) => {
 	return {
 		type: types.DELETE_SLEEP_ENTRY,

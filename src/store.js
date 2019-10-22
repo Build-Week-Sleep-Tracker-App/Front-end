@@ -11,6 +11,7 @@ const store = createStore(
 		login: reducers.loginReducer,
 		register: reducers.signUpReducer,
 		user: reducers.userReducer,
+		isEditingEntry: reducers.editEntryReducer
 	}),
 	// local storage
 	loadState(persistedStateKeysInLocalStorage),
