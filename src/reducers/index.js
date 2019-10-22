@@ -1,6 +1,5 @@
 import * as types from '../actions/actionTypes';
 import { getUserID } from '../utils';
-import moment from 'moment';
 
 const initialSignupState = {
 	isSignedUp: false

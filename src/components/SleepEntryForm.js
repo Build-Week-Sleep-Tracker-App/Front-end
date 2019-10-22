@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 const SleepEntryForm = ({ errors, touched, getUser }) => {
 	useEffect(() => {
 		getUser();
-	}, [])
+	}, [getUser])
 	return (
 		<Form>
 			<Field type="datetime-local" name="start" />
@@ -44,13 +44,13 @@ const SleepEntryForm = ({ errors, touched, getUser }) => {
 	)
 }
 
-const dateStart = moment().format('YYYY-MM-DDTHH:mm');
-const dateEnd = moment().add(7, 'hours').format('YYYY-MM-DDTHH:mm');
+const dateStart = moment();
+const dateEnd = moment().add(7, 'hours');
 const SleepEntryFormik = withFormik({
 	mapPropsToValues({ start, end, bed_t_tracking, work_t_tracking, average_rating }) {
 		return {
-			start: start || dateStart,
-			end: end || dateEnd,
+			start: (moment(start) || dateStart).format('YYYY-MM-DDTHH:mm'),
+			end: (moment(end) || dateEnd).format('YYYY-MM-DDTHH:mm'),
 			bed_t_tracking: bed_t_tracking || 1,
 			work_t_tracking: work_t_tracking || 1,
 			average_rating: average_rating || 1,
