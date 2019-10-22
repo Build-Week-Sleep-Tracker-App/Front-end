@@ -42,9 +42,16 @@ export const loginReducer = (state = initialLoginState, action) => {
 	}
 };
 
-let sleepEntryID = 0;
+let sleepEntryID = localStorage.getItem('sleep_tracker_user');
+if (sleepEntryID === null) {
+	sleepEntryID = 0;
+} else {
+	sleepEntryID = JSON.parse(sleepEntryID).sleepData;
+	sleepEntryID = sleepEntryID[sleepEntryID.length - 1].id;
+}
+
 const initialUserState = {
-	"id": "",
+	"id": getUserID(),
 	"username": "",
 	"role": "",
 	"birthdate": "",
@@ -53,28 +60,21 @@ const initialUserState = {
 const userReducer = (state = initialUserState, action) => {
 	switch (action.type) {
 		case types.SET_USER:
+			debugger;
 			return {
 				...state,
-				...action.payload,
-				id: getUserID(),
+				...action.payload
 			};
 		case types.ADD_SLEEP_ENTRY:
 			sleepEntryID++;
-			console.log('addSleepEntry request', {
-				...action.payload,
-				id: sleepEntryID,
-				userID: getUserID()
-			});
+			console.log('sleepEntryID', sleepEntryID)
 			return {
 				...state,
-				sleepData: [
-					...state.sleepData, 
-					{
-						id: sleepEntryID,
-						userID: getUserID(),
-						...action.payload,
-					}
-				]
+				sleepData: state.sleepData.concat({
+					...action.payload,
+					id: sleepEntryID,
+					userID: state.id,
+				})
 			};
 		case types.EDIT_SLEEP_ENTRY:
 			return {
@@ -100,6 +100,7 @@ const editEntryReducer = (state = 0, action) => {
 			return action.payload.id;
 		case types.ADD_SLEEP_ENTRY:
 		case types.EDIT_SLEEP_ENTRY:
+		case types.DELETE_SLEEP_ENTRY:
 			return 0;
 		default:
 			return state;
