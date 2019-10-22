@@ -1,24 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import moment from 'moment';
-import { axiosWithAuth } from '../utils/index'
-/* 
-const querySleepData = () => {
-	const currentUserId = localStorage.getItem("sleep_tracker_user_id")
-	axiosWithAuth().get(`https://sleeptrack.herokuapp.com/api/user/${currentUserId}`)
-		.then(res => {
-			console.log(res.data);
-		})
-		.catch(err => {
-			console.log(err);
-		})
-} */
 
 const SleepEntryForm = ({ sleepForm, addSleepEntry, changeSleepEntryForm }) => {
-/* 	useEffect(() => {
-		querySleepData();
-	}) */
 	const addEntry = (e) => {
 		e.preventDefault();
 		addSleepEntry(sleepForm);
