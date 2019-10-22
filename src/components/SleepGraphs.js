@@ -2,6 +2,9 @@ import React from "react";
 import moment from "moment";
 import {
   LineChart,
+  ScatterChart,
+  Legend,
+  Scatter,
   Line,
   Label,
   YAxis,
@@ -87,10 +90,10 @@ const formatXAxis = tick => {
   return moment(tick).format("MMM Do YYYY");
 };
 
-export default function SleepGraph(props) {
+export default function SleepGraphs(props) {
   return (
     <div>
-      <h1>Sleep Graph</h1>
+      <h1>Hours of sleep over time</h1>
       <LineChart width={1000} height={400} data={dummySleepData} margin={{ bottom: 20, right: 20}}>
         <Line type="monotone" dataKey="hours" stroke="rgba(29, 161, 242, 1)" />
         <CartesianGrid stroke="ccc" />
@@ -104,4 +107,12 @@ export default function SleepGraph(props) {
       </LineChart>
     </div>
   );
+}
+
+export function SleepMoodScatterGraph(props) {
+	return (
+		<div>
+			<h1>Average mood score versus hours of sleep</h1>
+		</div>
+	)
 }
