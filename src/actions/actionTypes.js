@@ -5,3 +5,6 @@ export const LOADING = 'LOADING';
 export const SET_USER = 'SET_USER';
 export const SET_ERROR = 'SET_ERROR';
 export const ON_CHANGE_SLEEP_FORM = 'ON_CHANGE_SLEEP_FORM';
+export const ADD_SLEEP_ENTRY = 'ADD_SLEEP_ENTRY';
+export const EDIT_SLEEP_ENTRY = 'EDIT_SLEEP_ENTRY';
+export const DELETE_SLEEP_ENTRY = 'DELETE_SLEEP_ENTRY';
