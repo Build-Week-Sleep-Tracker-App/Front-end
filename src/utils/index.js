@@ -3,11 +3,11 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 export function axiosWithAuth() {
-	const token = localStorage.getItem("sleep_tracker_token");
+    const token = localStorage.getItem("sleep_tracker_token");
 	return axios.create({
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: `${token}`
+			"authorize": `${token}`
 		}
 	});
 }
