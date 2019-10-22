@@ -66,14 +66,13 @@ const userReducer = (state = initialUserState, action) => {
 const dateStart = moment().format('YYYY-MM-DDTHH:mm');
 const dateEnd = moment().add(7, 'hours').format('YYYY-MM-DDTHH:mm');
 const initialSleepFormState = {
-	"userID": Number(localStorage.getItem("sleep_tracker_user_id")),
+	"userID": getUserID(),
 	"start": dateStart,
 	"end": dateEnd,
 	"difference": 0,
-	"bed_t_tracking": 1,
-	"work_t_tracking": 1,
-	//"avarage_rating": "",
-	"average_rating": 1,
+	"bed_t_tracking": "1",
+	"work_t_tracking": "1",
+	"average_rating": "1",
 };
 const sleepFormReducer = (state = initialSleepFormState, action) => {
 	switch (action.type) {
