@@ -1,4 +1,5 @@
 import * as types from '../actions/actionTypes';
+import { getUserID } from '../utils';
 import moment from 'moment';
 
 const initialSignupState = {
@@ -53,29 +54,33 @@ const initialUserState = {
 const userReducer = (state = initialUserState, action) => {
 	switch (action.type) {
 		case types.SET_USER:
-			return action.payload;
+			return {
+				"id": getUserID(),
+				...action.payload
+			};
 		default:
 			return state;
 	}
 }
 
-const today = moment().format('YYYY-MM-DDTHH:mm');
+const dateStart = moment().format('YYYY-MM-DDTHH:mm');
+const dateEnd = moment().add(7, 'hours').format('YYYY-MM-DDTHH:mm');
 const initialSleepFormState = {
-	"userID": localStorage.getItem("sleep_tracker_user_id"), // update on login or access (even if auto logs in from token)
-	"start": today,
-	"end": today,
-	"difference": "",
-	"bed_t_tracking": "",
-	"work_t_tracking": "",
+	"userID": Number(localStorage.getItem("sleep_tracker_user_id")),
+	"start": dateStart,
+	"end": dateEnd,
+	"difference": 0,
+	"bed_t_tracking": 1,
+	"work_t_tracking": 1,
 	//"avarage_rating": "",
-	"average_rating": "",
+	"average_rating": 1,
 };
 const sleepFormReducer = (state = initialSleepFormState, action) => {
 	switch (action.type) {
 		case types.SET_USER:
 			return {
 				...state,
-				"userID": action.payload.id
+				"userID": getUserID(),
 			}
 		case types.ON_CHANGE_SLEEP_FORM:
 			return {
