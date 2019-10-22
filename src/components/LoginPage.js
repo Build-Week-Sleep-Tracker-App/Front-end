@@ -8,8 +8,12 @@ import './styles/loginPage.css'
 const LoginPage = props => {
   return (
     <div className="forms">
-      <Login login={props.login} history={props.history} />
-      <Register signUp={props.signUp} />
+      <Login
+        className="form-item"
+        login={props.login}
+        history={props.history}
+      />
+      <Register className="form-item" signUp={props.signUp} />
     </div>
   )
 }

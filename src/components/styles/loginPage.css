@@ -2,5 +2,25 @@
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  padding-top: 50px;
+  padding-top: 30px;
+}
+
+/* mobile screen size */
+@media (max-width: 500px) {
+  .forms {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* tablet screen size */
+@media (max-width: 800px) {
+  .forms {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+  }
 }
