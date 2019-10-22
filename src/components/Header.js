@@ -1,15 +1,15 @@
-import React from 'react'
-import { Navbar, Button } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
-import { NavLink } from 'react-router-dom'
-import logo from './logo.svg'
-import { connect } from 'react-redux'
-import { logout } from '../actions/actionCreators'
+import React from 'react';
+import { Navbar, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { NavLink } from 'react-router-dom';
+import logo from './logo.svg';
+import { connect } from 'react-redux';
+import { logout } from '../actions/actionCreators';
 
 const Header = props => {
   const onLogoutClick = e => {
-    props.dispatch(logout())
-  }
+    props.dispatch(logout());
+  };
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="sm">
@@ -44,10 +44,10 @@ const Header = props => {
         </Navbar.Collapse>
       </Navbar>
     </div>
-  )
-}
+  );
+};
 
 export default connect(
   state => ({ isLoggedIn: state.login.isLoggedIn }),
   null
-)(Header)
+)(Header);

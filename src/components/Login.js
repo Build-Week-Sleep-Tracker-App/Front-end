@@ -1,7 +1,7 @@
-import React from 'react'
-import { withFormik, Form, Field } from 'formik'
-import * as Yup from 'yup'
-import './styles/forms.css'
+import React from 'react';
+import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import './styles/forms.css';
 
 function Login({ errors, touched }) {
   return (
@@ -36,7 +36,7 @@ function Login({ errors, touched }) {
         )}
       </Form>
     </div>
-  )
+  );
 }
 
 const FormikLoginForm = withFormik({
@@ -45,7 +45,7 @@ const FormikLoginForm = withFormik({
       username: username || '',
       password: password || '',
       confirmPassword: confirmPassword || ''
-    }
+    };
   },
 
   validationSchema: Yup.object().shape({
@@ -58,8 +58,8 @@ const FormikLoginForm = withFormik({
   }),
 
   handleSubmit(values, { props }) {
-    props.login(values, props.history)
+    props.login(values, props.history);
   }
-})(Login)
+})(Login);
 
-export default FormikLoginForm
+export default FormikLoginForm;

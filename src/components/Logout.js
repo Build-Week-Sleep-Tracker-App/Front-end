@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './styles/logout.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './styles/logout.css';
 
 const Logout = () => {
   return (
@@ -10,7 +10,7 @@ const Logout = () => {
         Click <Link to="/">here</Link> to log in again
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default Logout
+export default Logout;

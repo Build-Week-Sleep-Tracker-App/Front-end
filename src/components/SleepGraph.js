@@ -1,8 +1,4 @@
-import React from 'react'
-export default function SleepGraph (props) {
-	return(
-		<div>
-			{props.children}
-		</div>
-	)
+import React from 'react';
+export default function SleepGraph(props) {
+  return <div>{props.children}</div>;
 }
