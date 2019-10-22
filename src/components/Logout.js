@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './styles/logout.css'
 
 const Logout = () => {
   return (
-    <div>
+    <div className="logout-container">
       <p>You have been logged out</p>
       <p>
         Click <Link to="/">here</Link> to log in again
