@@ -19,10 +19,13 @@ export const login = (user, history) => dispatch => {
     });
 };
 
-export const logout = () => dispatch => {
+export const logout = () => {
   // remove token from local storage
   localStorage.removeItem('sleep_tracker_token');
-  dispatch(setUser({}));
+  localStorage.removeItem('sleep_tracker_user_id');
+  return {
+		type: types.LOGOUT,
+	}
 };
 
 export const signUp = user => dispatch => {
