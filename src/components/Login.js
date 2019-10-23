@@ -1,6 +1,7 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
+import './styles/forms.css';
 
 function Login({ errors, touched }) {
   return (
@@ -18,7 +19,7 @@ function Login({ errors, touched }) {
 }
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ username, password, confirmPassword}) {
+  mapPropsToValues({ username, password, confirmPassword }) {
     return {
       username: username || "",
 	  password: password || "",

@@ -1,6 +1,6 @@
-import * as types from "./actionTypes";
+import * as types from './actionTypes';
 import moment from 'moment';
-import { axiosWithAuth } from "../utils";
+import { axiosWithAuth } from '../utils';
 
 export const login = (user, history) => dispatch => {
 	dispatch({ type: types.LOGIN_START });
@@ -32,19 +32,19 @@ export const signUp = (user) => dispatch => {
 		})
 }
 
-export const setLoading = (isLoading) => {
-	return {
-		type: types.LOADING,
-		payload: isLoading
-	}
-}
+export const setLoading = isLoading => {
+  return {
+    type: types.LOADING,
+    payload: isLoading
+  };
+};
 
-export const setUser = (data) => {
-	return {
-		type: types.SET_USER,
-		payload: data,
-	}
-}
+export const setUser = data => {
+  return {
+    type: types.SET_USER,
+    payload: data
+  };
+};
 
 const addUserSleepEntry = (entry) => {
 	return {
@@ -82,11 +82,11 @@ export const setGlobalError = (error) => {
 }
 
 export const changeSleepEntryForm = field => {
-	return {
-		type: types.ON_CHANGE_SLEEP_FORM,
-		payload: field
-	}
-}
+  return {
+    type: types.ON_CHANGE_SLEEP_FORM,
+    payload: field
+  };
+};
 
 export const addSleepEntry = entry => dispatch => {
 	//dispatch(setLoading(true));

@@ -1,7 +1,7 @@
-import React from 'react'
-import { withFormik, Form, Field } from 'formik'
-import * as Yup from 'yup'
-import './styles/forms.css'
+import React from 'react';
+import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import './styles/forms.css';
 
 function Register({ errors, touched }) {
   return (
@@ -10,14 +10,9 @@ function Register({ errors, touched }) {
       <Form className="form-group">
         <Field className="input" type="text" name="username" placeholder="Username" />
         <Field className="input" type="password" name="password" placeholder="Password" />
-        <Field
-          className="input"
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-        />
-        <Field className="input" type="date" name="birthdate" placeholder="Birthdate" />
-        <button className="button" type="submit">Register</button>
+        <Field className="input" type="password" name="confirmPassword" placeholder="Confirm Password" />
+        <Field type="date" name="birthdate" placeholder="Birthdate" />
+        <button type="submit">Register</button>
         {touched.username && errors.username && <p>{errors.username}</p>}
         {touched.password && errors.password && <p>{errors.password}</p>}
         {touched.confirmPassword && errors.confirmPassword && (
