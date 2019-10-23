@@ -1,8 +1,8 @@
 import React from "react";
-import { withFormik, Form, Field, yupToFormErrors } from "formik";
+import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
 
-function Login({ errors, touched}) {
+function Login({ errors, touched }) {
   return (
     <div>
       <h1>Login</h1>

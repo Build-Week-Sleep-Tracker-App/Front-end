@@ -3,7 +3,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 export function axiosWithAuth() {
-    const token = localStorage.getItem("sleep_tracker_token");
+	const token = localStorage.getItem("sleep_tracker_token");
 	return axios.create({
 		baseURL: 'https://sleeptrack.herokuapp.com/',
 		headers: {
@@ -28,25 +28,25 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
 
 export const getUserID = () => {
 	const userID = localStorage.getItem('sleep_tracker_user_id');
-	return userID ? Number(userID) : false;
+	return userID ? Number(userID) : 0;
 }
 
 export const loadState = (keys) => {
 	try {
 		let serializedState = null;
-		if (keys.length > 0) {
-			serializedState = keys.reduce((serialSt, key) => {
-				serialSt[key] = localStorage.getItem('sleep_tracker_' + key);
-				return serialSt;
-			}, {})
-		} else {
-			serializedState = localStorage.getItem('sleep_tracker_state');
-		}
-		if (serializedState === null || Object.values(serializedState).includes(null)) {
-			return undefined;
-		}
-		return JSON.parse(serializedState);
+		let err = false;
+		serializedState = keys.reduce((serialSt, key) => {
+			serialSt[key] = localStorage.getItem('sleep_tracker_' + key);
+			if(serialSt[key] !== null) {
+				serialSt[key] = JSON.parse(serialSt[key]);
+			} else {
+				err = true;
+			}
+			return serialSt;
+		}, {})
+		return serializedState === null || err ? undefined : serializedState;
 	} catch (err) {
+		console.error('loadState:', err);
 		return undefined;
 	}
 }
@@ -56,7 +56,7 @@ export const saveState = (state, keys) => {
 		let serializedState = null;
 		if (keys.length > 0) {
 			keys.forEach(key => {
-				serializedState = JSON.stringify(state[key])
+				serializedState = JSON.stringify(state[key]);
 				localStorage.setItem('sleep_tracker_' + key, serializedState);
 			});
 		} else {

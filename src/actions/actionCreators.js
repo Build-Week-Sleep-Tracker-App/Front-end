@@ -10,7 +10,7 @@ export const login = (user, history) => dispatch => {
 			localStorage.setItem("sleep_tracker_token", res.data.token);
 			localStorage.setItem("sleep_tracker_user_id", res.data.id);
 			dispatch({ type: types.LOGIN, payload: res.data.id })
-			history.push("/sleepentryform");
+			history.push("/sleep");
 		})
 		.catch(err => {
 			console.log(err);
@@ -60,6 +60,13 @@ const editUserSleepEntry = (entry) => {
 	}
 }
 
+export const startEditSleepEntry = (entry) => {
+	return {
+		type: types.START_EDIT_SLEEP_ENTRY,
+		payload: entry,
+	}
+}
+
 const deleteUserSleepEntry = (id) => {
 	return {
 		type: types.DELETE_SLEEP_ENTRY,
@@ -86,7 +93,6 @@ export const addSleepEntry = entry => dispatch => {
 	entry.difference = moment(entry.end).diff(moment(entry.start), 'hours');
 	entry.start = entry.start.replace('T', ' ');
 	entry.end = entry.end.replace('T', ' ');
-	console.log('addSleepEntry request', entry);
 	dispatch(addUserSleepEntry(entry))
 	/*
 	axiosWithAuth().post(`/api/sleepData`, entry)
@@ -105,8 +111,7 @@ export const addSleepEntry = entry => dispatch => {
 
 export const editSleepEntry = entry => dispatch => {
 	//dispatch(setLoading(true));
-	console.log('editSleepEntry request', entry);
-	editUserSleepEntry(entry);
+	dispatch(editUserSleepEntry(entry));
 	/*
 	axiosWithAuth().put(`/api/sleepData/${entry.id}`, entry)
 		.then(response => {
@@ -125,7 +130,7 @@ export const editSleepEntry = entry => dispatch => {
 export const deleteSleepEntry = id => dispatch => {
 	//dispatch(setLoading(true));
 	console.log('deleteSleepEntry request', id);
-	deleteUserSleepEntry(id);
+	dispatch(deleteUserSleepEntry(id));
 	/*
 	axiosWithAuth().delete(`/api/sleepData/${entry.id}`)
 		.then(response => {
