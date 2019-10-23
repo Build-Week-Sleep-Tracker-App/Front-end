@@ -67,6 +67,14 @@ const userReducer = (state = initialUserState, action) => {
 	switch (action.type) {
 		case types.LOGOUT:
 			return initialUserState;
+		case types.LOGIN:
+			return {
+				id: getUserID(),
+				username: '',
+				role: '',
+				birthdate: '',
+				sleepData: []
+			}
 		case types.SET_USER:
 			return {
 				...state,
