@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
 
+body {
+	color: ${props => props.theme.fonts.gray};
+	font-family: ${props => props.theme.fonts.poppins};
+}
+
 .navbar {
 	padding: .5rem 10px;
 }
@@ -54,7 +59,7 @@ a {
 		flex-basis: 50%;
 		&:first-child {
 			padding-right: 10%;
-			border-right: 1px solid ${props => props.theme.colors.blue};
+			border-right: 1px solid ${props => props.theme.colors.red}; // blue
 		}
 		&:last-child {
 			padding-left: 10%;
@@ -86,6 +91,34 @@ a {
 	padding-bottom: 30px;
 }
 
+.sleepEntryForm {
+	padding-bottom: 30px;
+}
+.sleepEntryList {
+	padding-bottom: 30px;
+}
+
+.form-group-cols {
+  display: flex;
+  flex-direction: row;
+  margin: 0 10px;
+	padding-bottom: 10px;
+	.form-col {
+		width: 100%;
+		max-width: 50%;
+		flex-basis: 50%;
+		&:first-child {
+			padding-right: 2%;
+		}
+		&:last-child {
+			padding-left: 2%;
+		}
+	}
+	& + button {
+		margin-left: 10px;
+	}
+}
+
 .input {
   padding: 10px;
   border-radius: 8px;
@@ -114,9 +147,9 @@ a {
 		}
 	}
 	&:checked + i {
-		border-color: ${props => props.theme.colors.green};
+		border-color: ${props => props.theme.colors.blue};
 		&:before {
-			color: ${props => props.theme.colors.green};
+			color: ${props => props.theme.colors.blue};
 			transform: scale(1.1);
 		}
 	}
@@ -238,9 +271,8 @@ fieldset {
 
 
 
+footer {
 
-.sleepEntry {
-  font-family: 'Roboto', sans-serif;
 }
 
 `;

@@ -92,8 +92,8 @@ const formatXAxis = tick => {
 
 export default function SleepGraphs(props) {
   return (
-    <div>
-      <h1>Hours of sleep over time</h1>
+    <section className="graph">
+      <h1 className="text">Hours of sleep over time</h1>
       <LineChart width={1000} height={400} data={dummySleepData} margin={{ bottom: 100, right: 20}}>
         <Line type="monotone" dataKey="hours" stroke="rgba(29, 161, 242, 1)" />
         <CartesianGrid stroke="ccc" />
@@ -105,7 +105,7 @@ export default function SleepGraphs(props) {
 		</YAxis>
         <Tooltip />
       </LineChart>
-	  
+	  {/* 
 	  <h1>Average mood score versus hours of sleep</h1>
 	  <ScatterChart width={1000} height={400} data={dummySleepData} margin={{ top: 20, bottom: 20, right: 20}}>
 		  <CartesianGrid />
@@ -115,7 +115,8 @@ export default function SleepGraphs(props) {
 		  <Legend />
 		  <Scatter name="Mood Score" data={dummySleepData} fill="rgba(248, 85, 101, 1)" />
 	  </ScatterChart>
-	</div>
+		 */}
+	</section>
   );
 }
 
