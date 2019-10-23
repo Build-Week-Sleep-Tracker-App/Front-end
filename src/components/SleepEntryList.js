@@ -23,33 +23,30 @@ const SleepEntryList = ({ user, startEditSleepEntry, deleteSleepEntry }) => {
             <th>Before sleep</th>
             <th>After wake up</th>
             <th>During the day</th>
+            <th>Edit entry</th>
+            <th>Delete entry</th>
           </tr>
         </thead>
+        <tbody>
+          {user.sleepData.map(entry => (
+            // <div key={entry.id} className="sleepEntry">
+            <tr key={entry.id}>
+              <td>{entry.id}</td>
+              <td>{moment(entry.start).format('HH:mm DD/MM/YYYY')}</td>
+              <td>{moment(entry.end).format('HH:mm DD/MM/YYYY')}</td>
+              <td>{entry.bed_t_tracking}</td>
+              <td>{entry.work_t_tracking}</td>
+              <td>{entry.average_rating}</td>
+              <td>
+                <button onClick={onEditEntry(entry)}>Edit entry</button>
+              </td>
+              <td>
+                <button onClick={onDeleteEntry(entry.id)}>Delete entry</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </Table>
-      {user.sleepData.map(entry => (
-        <div key={entry.id} className="sleepEntry">
-          <div>
-            <b>Start:</b> {moment(entry.start).format('HH:mm DD/MM/YYYY')}
-          </div>
-          <div>
-            <b>End:</b> {moment(entry.end).format('HH:mm DD/MM/YYYY')}
-          </div>
-          <div>
-            <b>Mood levels:</b>
-          </div>
-          <div>
-            <b>Before sleep</b> {entry.bed_t_tracking}
-          </div>
-          <div>
-            <b>After waking up</b> {entry.work_t_tracking}
-          </div>
-          <div>
-            <b>During the day</b> {entry.average_rating}
-          </div>
-          <button onClick={onEditEntry(entry)}>Edit entry</button>
-          <button onClick={onDeleteEntry(entry.id)}>Delete entry</button>
-        </div>
-      ))}
     </div>
   );
 };
