@@ -1,15 +1,16 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
+import './styles/forms.css';
 
 function Login({ errors, touched }) {
   return (
-    <div>
-      <h1>Login</h1>
-      <Form>
-        <Field type="text" name="username" placeholder="Username" />
-        <Field type="password" name="password" placeholder="Password" />
-        <button type="submit">Login</button>
+    <div className="form-container">
+      <h1 className="text">Login</h1>
+      <Form className="form-group">
+        <Field className="input" type="text" name="username" placeholder="Username" />
+        <Field className="input" type="password" name="password" placeholder="Password" />
+        <button className="button" type="submit">Login</button>
 		{touched.username && errors.username && <p>{errors.username}</p>}
 		{touched.password && errors.password && <p>{errors.password}</p>}
       </Form>
@@ -18,7 +19,7 @@ function Login({ errors, touched }) {
 }
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ username, password, confirmPassword}) {
+  mapPropsToValues({ username, password, confirmPassword }) {
     return {
       username: username || "",
 	  password: password || "",
