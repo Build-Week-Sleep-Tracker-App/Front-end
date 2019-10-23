@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
 import SleepPage from "./components/SleepPage";
 import Logout from "./components/Logout";
+import Footer from "./components/Footer";
 
 export default function SleepTracker() {
   return (
@@ -15,6 +16,7 @@ export default function SleepTracker() {
         <PrivateRoute path="/sleep" component={SleepPage} />
         <Route path="/logout" component={Logout} />
       </Switch>
+			<Footer />
     </div>
   )
 }

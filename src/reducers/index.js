@@ -36,7 +36,9 @@ export const loginReducer = (state = initialLoginState, action) => {
         isLoggingIn: false,
         isLoggedIn: true,
         userID: action.payload
-      };
+			};
+		case types.LOGOUT:
+			return initialLoginState;
     default:
       return state;
   }
@@ -59,6 +61,8 @@ const initialUserState = {
 };
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+		case types.LOGOUT:
+			return initialUserState;
     case types.SET_USER:
       return {
         ...state,
@@ -96,7 +100,8 @@ const userReducer = (state = initialUserState, action) => {
 const editEntryReducer = (state = 0, action) => {
   switch (action.type) {
     case types.START_EDIT_SLEEP_ENTRY:
-      return action.payload.id;
+			return action.payload.id;
+    case types.LOGOUT:
     case types.ADD_SLEEP_ENTRY:
     case types.EDIT_SLEEP_ENTRY:
     case types.DELETE_SLEEP_ENTRY:
