@@ -1,6 +1,5 @@
 import * as types from '../actions/actionTypes';
 import { getUserID } from '../utils';
-import moment from 'moment';
 
 const initialSignupState = {
 	isSignedUp: false
@@ -43,9 +42,16 @@ export const loginReducer = (state = initialLoginState, action) => {
 	}
 };
 
+let sleepEntryID = localStorage.getItem('sleep_tracker_user');
+if (sleepEntryID === null) {
+	sleepEntryID = 0;
+} else {
+	sleepEntryID = JSON.parse(sleepEntryID).sleepData;
+	sleepEntryID = sleepEntryID[sleepEntryID.length - 1].id;
+}
 
 const initialUserState = {
-	"id": "",
+	"id": getUserID(),
 	"username": "",
 	"role": "",
 	"birthdate": "",
@@ -54,16 +60,21 @@ const initialUserState = {
 const userReducer = (state = initialUserState, action) => {
 	switch (action.type) {
 		case types.SET_USER:
+			debugger;
 			return {
 				...state,
-				...action.payload,
-				"id": getUserID(),
+				...action.payload
 			};
 		case types.ADD_SLEEP_ENTRY:
 			sleepEntryID++;
+			console.log('sleepEntryID', sleepEntryID)
 			return {
 				...state,
-				sleepData: [...state.sleepData, { ...action.payload, "id": sleepEntryID }]
+				sleepData: state.sleepData.concat({
+					...action.payload,
+					id: sleepEntryID,
+					userID: state.id,
+				})
 			};
 		case types.EDIT_SLEEP_ENTRY:
 			return {
@@ -83,31 +94,14 @@ const userReducer = (state = initialUserState, action) => {
 	}
 }
 
-const dateStart = moment().format('YYYY-MM-DDTHH:mm');
-const dateEnd = moment().add(7, 'hours').format('YYYY-MM-DDTHH:mm');
-let sleepEntryID = 0;
-const initialSleepFormState = {
-	"id": 0,
-	"userID": getUserID(),
-	"start": dateStart,
-	"end": dateEnd,
-	"difference": 7,
-	"bed_t_tracking": 1,
-	"work_t_tracking": 1,
-	"average_rating": 1,
-};
-const sleepFormReducer = (state = initialSleepFormState, action) => {
+const editEntryReducer = (state = 0, action) => {
 	switch (action.type) {
-		case types.SET_USER:
-			return {
-				...state,
-				"userID": getUserID(),
-			}
-		case types.ON_CHANGE_SLEEP_FORM:
-			return {
-				...state,
-				...action.payload
-			}
+		case types.START_EDIT_SLEEP_ENTRY:
+			return action.payload.id;
+		case types.ADD_SLEEP_ENTRY:
+		case types.EDIT_SLEEP_ENTRY:
+		case types.DELETE_SLEEP_ENTRY:
+			return 0;
 		default:
 			return state;
 	}
@@ -123,6 +117,5 @@ export default {
 	initialUserState,
 	userReducer,
 
-	initialSleepFormState,
-	sleepFormReducer,
+	editEntryReducer
 }
