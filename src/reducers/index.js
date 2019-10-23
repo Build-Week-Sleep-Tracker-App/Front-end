@@ -19,7 +19,7 @@ export const signUpReducer = (state = initialSignupState, action) => {
 
 const initialLoginState = {
   isLoggingIn: false,
-  isLoggedIn: false,
+  isLoggedIn: (getUserID() > 0),
   userID: null
 };
 
