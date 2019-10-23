@@ -30,9 +30,7 @@ function Register({ errors, touched }) {
 					placeholder="Confirm Password"
 					required="required"
 				/>
-				{touched.confirmPassword && errors.confirmPassword && (
-					<p>{errors.confirmPassword}</p>
-				)}
+				{touched.confirmPassword && errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 				<Field
 					className="input"
 					type="date"

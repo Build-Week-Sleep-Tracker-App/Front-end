@@ -1,8 +1,7 @@
 import React from 'react';
-import { Navbar, Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import logo from './logo.svg';
+import logo from '../logo.png';
 import { connect } from 'react-redux';
 import { logout } from '../actions/actionCreators';
 
@@ -27,13 +26,14 @@ const Header = props => {
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-						{!props.isLoggedIn ? (
-							<NavLink
-								to="/"
-								activeClassName="active">
-								Login
-							</NavLink>
-						) : null}
+						<NavLink
+							exact
+							to="/"
+							activeClassName="active">
+							Home
+						</NavLink>
+						<a href="https://awesome-sleep-tracker.netlify.com/" target="_blank" rel="noopener noreferrer">Marketing</a>
+						<a href="https://build-week-sleep-tracker-app.github.io/Marketing-page-2/" target="_blank" rel="noopener noreferrer">Marketing 2</a>
 						<NavLink to="/sleep" activeClassName="active">Dashboard</NavLink>
 						{props.isLoggedIn ? (
 							<NavLink
