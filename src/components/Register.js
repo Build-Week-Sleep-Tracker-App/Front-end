@@ -21,7 +21,7 @@ function Register({ errors, touched }) {
         {touched.date && errors.date && <p>{errors.date}</p>}
       </Form>
     </div>
-  );
+  )
 }
 
 const FormikRegisterForm = withFormik({
