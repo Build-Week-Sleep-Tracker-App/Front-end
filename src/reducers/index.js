@@ -1,5 +1,5 @@
 import * as types from '../actions/actionTypes';
-import moment from 'moment';
+import { getUserID } from '../utils';
 
 const initialSignupState = {
   isSignedUp: false
@@ -42,49 +42,70 @@ export const loginReducer = (state = initialLoginState, action) => {
   }
 };
 
+let sleepEntryID = localStorage.getItem('sleep_tracker_user');
+if (sleepEntryID === null) {
+	sleepEntryID = 0;
+} else {
+	sleepEntryID = JSON.parse(sleepEntryID).sleepData;
+	sleepEntryID = sleepEntryID[sleepEntryID.length - 1].id;
+}
+
 const initialUserState = {
-  id: '',
-  username: '',
-  role: '',
-  birthdate: '',
-  sleepData: []
+	"id": getUserID(),
+	"username": "",
+	"role": "",
+	"birthdate": "",
+	"sleepData": []
 };
 const userReducer = (state = initialUserState, action) => {
-  switch (action.type) {
-    case types.SET_USER:
-      return action.payload;
-    default:
-      return state;
-  }
-};
+	switch (action.type) {
+		case types.SET_USER:
+			debugger;
+			return {
+				...state,
+				...action.payload
+			};
+		case types.ADD_SLEEP_ENTRY:
+			sleepEntryID++;
+			console.log('sleepEntryID', sleepEntryID)
+			return {
+				...state,
+				sleepData: state.sleepData.concat({
+					...action.payload,
+					id: sleepEntryID,
+					userID: state.id,
+				})
+			};
+		case types.EDIT_SLEEP_ENTRY:
+			return {
+				...state,
+				sleepData: state.sleepData.map(entry => {
+					if (entry.id === action.payload.id) return action.payload;
+					return entry;
+				})
+			};
+		case types.DELETE_SLEEP_ENTRY:
+			return {
+				...state,
+				sleepData: state.sleepData.filter(entry => entry.id !== action.payload)
+			};
+		default:
+			return state;
+	}
+}
 
-const today = moment().format('YYYY-MM-DDTHH:mm');
-const initialSleepFormState = {
-  userID: localStorage.getItem('sleep_tracker_user_id'), // update on login or access (even if auto logs in from token)
-  start: today,
-  end: today,
-  difference: '',
-  bed_t_tracking: '',
-  work_t_tracking: '',
-  //"avarage_rating": "",
-  average_rating: ''
-};
-const sleepFormReducer = (state = initialSleepFormState, action) => {
-  switch (action.type) {
-    case types.SET_USER:
-      return {
-        ...state,
-        userID: action.payload.id
-      };
-    case types.ON_CHANGE_SLEEP_FORM:
-      return {
-        ...state,
-        ...action.payload
-      };
-    default:
-      return state;
-  }
-};
+const editEntryReducer = (state = 0, action) => {
+	switch (action.type) {
+		case types.START_EDIT_SLEEP_ENTRY:
+			return action.payload.id;
+		case types.ADD_SLEEP_ENTRY:
+		case types.EDIT_SLEEP_ENTRY:
+		case types.DELETE_SLEEP_ENTRY:
+			return 0;
+		default:
+			return state;
+	}
+}
 
 export default {
   initialSignupState,
@@ -96,6 +117,5 @@ export default {
   initialUserState,
   userReducer,
 
-  initialSleepFormState,
-  sleepFormReducer
-};
+  editEntryReducer
+}

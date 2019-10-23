@@ -1,10 +1,10 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import LoginPage from './components/LoginPage'
-import { PrivateRoute } from './utils/index'
-import SleepEntryForm from './components/SleepEntryForm'
-import Header from './components/Header'
-import Logout from './components/Logout'
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import { PrivateRoute } from "./utils";
+import Header from "./components/Header";
+import LoginPage from "./components/LoginPage";
+import SleepPage from "./components/SleepPage";
+import Logout from "./components/Logout";
 
 export default function SleepTracker() {
   return (
@@ -12,7 +12,7 @@ export default function SleepTracker() {
       <Header />
       <Switch>
         <Route exact path="/" component={LoginPage} />
-        <PrivateRoute path="/sleepentryform" component={SleepEntryForm} />
+        <PrivateRoute path="/sleep" component={SleepPage} />
         <Route path="/logout" component={Logout} />
       </Switch>
     </div>
