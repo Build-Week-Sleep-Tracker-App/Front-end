@@ -1,7 +1,7 @@
 .form-container {
   border: 1px solid silver;
   width: 500px;
-  height: 350px;
+  height: 450px;
   font-family: 'Playfair Display';
   box-shadow: 2px 2px grey;
 }
@@ -45,7 +45,7 @@
   .form-container {
     max-width: 100%;
     margin: 0 auto;
-    height: 300px;
+    height: 450px;
     margin: 10px;
   }
 
