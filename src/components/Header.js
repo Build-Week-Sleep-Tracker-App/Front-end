@@ -32,8 +32,6 @@ const Header = props => {
 							activeClassName="active">
 							Home
 						</NavLink>
-						<a href="https://awesome-sleep-tracker.netlify.com/" target="_blank" rel="noopener noreferrer">Marketing</a>
-						<a href="https://build-week-sleep-tracker-app.github.io/Marketing-page-2/" target="_blank" rel="noopener noreferrer">Marketing 2</a>
 						<NavLink to="/sleep" activeClassName="active">Dashboard</NavLink>
 						{props.isLoggedIn ? (
 							<NavLink
