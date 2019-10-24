@@ -3,12 +3,10 @@ import { Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import logo from '../logo.png';
 import { connect } from 'react-redux';
-import { logout } from '../actions/actionCreators';
+import * as actionCreators from '../actions/actionCreators';
 
-const Header = props => {
-	const onLogoutClick = e => {
-		props.dispatch(logout());
-	};
+const Header = ({ isLoggedIn, logout }) => {
+	console.log({ isLoggedIn, logout })
 	return (
 		<header>
 			<div className="inner">
@@ -32,14 +30,12 @@ const Header = props => {
 							activeClassName="active">
 							Home
 						</NavLink>
-						<a href="https://awesome-sleep-tracker.netlify.com/" target="_blank" rel="noopener noreferrer">Marketing</a>
-						<a href="https://build-week-sleep-tracker-app.github.io/Marketing-page-2/" target="_blank" rel="noopener noreferrer">Marketing 2</a>
 						<NavLink to="/sleep" activeClassName="active">Dashboard</NavLink>
-						{props.isLoggedIn ? (
+						{isLoggedIn ? (
 							<NavLink
-								to="/logout"
-								activeClassName="active"
-								onClick={onLogoutClick}>
+								exact
+								to="/"
+								onClick={logout}>
 								Logout
 							</NavLink>
 						) : null}
@@ -50,7 +46,4 @@ const Header = props => {
 	);
 };
 
-export default connect(
-	state => ({ isLoggedIn: state.login.isLoggedIn }),
-	null
-)(Header);
+export default connect(state => ({ isLoggedIn: state.login.isLoggedIn }), actionCreators)(Header);

@@ -7,9 +7,9 @@ function Login({ errors, touched }) {
 		<div className="form-column">
 			<h1 className="text">Login</h1>
 			<Form className="form-group">
-				<Field className="input" type="text" name="username" placeholder="Username" required="required" />
+				<Field className="input" type="text" name="username" placeholder="Username" required="required" autoComplete="username" />
 				{touched.username && errors.username && <p>{errors.username}</p>}
-				<Field className="input" type="password" name="password" placeholder="Password" required="required" />
+				<Field className="input" type="password" name="password" placeholder="Password" required="required" autoComplete="current-password" />
 				{touched.password && errors.password && <p>{errors.password}</p>}
 				<button className="button" type="submit">Login</button>
 			</Form>

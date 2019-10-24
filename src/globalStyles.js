@@ -12,7 +12,19 @@ body {
 .inner {
 	width: 100%;
 	margin: 0 auto;
-	max-width: 1200px;
+	max-width: 300px;
+	@media screen and (min-width: 480px) {
+		max-width: 400px;
+	}
+	@media screen and (min-width: 720px) {
+		max-width: 640px;
+	}
+	@media screen and (min-width: 1024px) {
+		max-width: 960px;
+	}
+	@media screen and (min-width: 1280px) {
+		max-width: 1200px;
+	}
 }
 
 a {
@@ -49,20 +61,28 @@ a {
 .forms {
 	.inner {
 		display: flex;
-		flex-flow: row nowrap;
+		flex-flow: row wrap;
 		align-items: stretch;
 		justify-content: space-between;
 	}
 	.form-column {
 		width: 100%;
-		max-width: 50%;
-		flex-basis: 50%;
+		max-width: 100%;
+		flex-basis: 100%;
+		@media screen and (min-width: 1024px) {
+			max-width: 50%;
+			flex-basis: 50%;
+		}
 		&:first-child {
-			padding-right: 10%;
-			border-right: 1px solid ${props => props.theme.colors.red}; // blue
+			@media screen and (min-width: 1024px) {
+				padding-right: 10%;
+				border-right: 1px solid ${props => props.theme.colors.red}; // blue
+			}
 		}
 		&:last-child {
-			padding-left: 10%;
+			@media screen and (min-width: 1024px) {
+				padding-left: 10%;
+			}
 		}
 	}
 }
@@ -94,24 +114,28 @@ a {
 .sleepEntryForm {
 	padding-bottom: 30px;
 }
-.sleepEntryList {
+.sleepEntryListSection {
 	padding-bottom: 30px;
 }
 
 .form-group-cols {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   margin: 0 10px;
 	padding-bottom: 10px;
 	.form-col {
 		width: 100%;
-		max-width: 50%;
-		flex-basis: 50%;
-		&:first-child {
-			padding-right: 2%;
-		}
-		&:last-child {
-			padding-left: 2%;
+		max-width: 100%;
+		flex-basis: 100%;
+		@media screen and (min-width: 1024px) {
+			max-width: 50%;
+			flex-basis: 50%;
+			&:first-child {
+				padding-right: 2%;
+			}
+			&:last-child {
+				padding-left: 2%;
+			}
 		}
 	}
 	& + button {
@@ -179,100 +203,124 @@ fieldset {
   font-size: 16px;
 }
 
-/* mobile screen size */
-@media (max-width: 500px) {
-  .form-container {
-    max-width: 100%;
-    margin: 0 auto;
-    height: 450px;
-    margin: 10px;
-  }
-
-  .form-group {
-    max-width: 80%;
-  }
-}
-
-/* tablet screen size */
-@media (max-width: 700px) {
-  .form-container {
-    max-width: 100%;
-    margin: 0 auto;
-    height: 300px;
-    margin: 10px;
-  }
-
-  .form-group {
-    max-width: 80%;
-  }
-}
-
-
-
-
-
-
-
-
-
-
 .forms {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+	height: calc(100vh - 188px);
   padding-top: 30px;
+	.inner {
+		height: auto;
+	}
 }
-
-/* mobile screen size */
-@media (max-width: 500px) {
-  .forms {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-/* tablet screen size */
-@media (max-width: 800px) {
-  .forms {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-.logout-container {
-  margin: 0 auto;
-  margin-top: 150px;
-  width: 50%;
-  text-align: center;
-  height: 200px;
-  padding-top: 50px;
-  box-shadow: 2px 2px grey;
-  border: 1px solid silver;
-}
-
-
-
-
-
-
-
-
 
 footer {
-
+	padding-top: 2px;
+	background-color: ${props => props.theme.colors.gray};
+	.inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	span {
+		padding-left: 15px;
+		color: white;
+	}
+	img {
+		max-width: 80px;
+	}
+	a {
+		color: white;
+		padding: 10px;
+		transition: all .2s ease-in-out;
+		&:hover {
+			text-decoration: none;
+			color: ${props => props.theme.colors.red};
+		}
+	}
 }
 
+.sleepEntryList {
+	padding: 0 10px;
+	display: flex;
+	justify-content: flex-start;
+	flex-flow: row wrap;
+	.sleepEntry {
+		cursor: pointer;
+		position: relative;
+		background-color: ${props => props.theme.colors.red75};
+		display: block;
+		color: white;
+		padding: 20px;
+		width: 100%;
+		max-width: 100%;
+		flex-basis: 100%;
+		margin-bottom: 12px;
+		@media screen and (min-width: 720px) {
+			max-width: calc((100% / 2) - 12px);
+			flex-basis: calc((100% / 2) - 12px);
+			margin-right: 12px;
+		}
+		@media screen and (min-width: 1024px) {
+			max-width: calc((100% / 3) - 12px);
+			flex-basis: calc((100% / 3) - 12px);
+			margin-bottom: 18px;
+			margin-right: 18px;
+		}
+		&:nth-child(3n) {
+			margin-right: 0;
+		}
+		.entryInfo {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
+		span {
+			&:first-child {
+				color: ${props => props.theme.colors.gray};
+			}
+		}
+		&:hover, &.editing, &.clicked {
+			.overlay {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: ${props => props.theme.colors.gray50};
+		opacity: 0;
+		visibility: hidden;
+		transition: all .33s ease-in-out;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		button {
+			appearance: none;
+			color: ${props => props.theme.colors.gray};
+			border: 2px solid ${props => props.theme.colors.gray};
+			width: 50px;
+			height: 50px;
+			margin: 0 6px;
+			&:first-child {
+				background-color: ${props => props.theme.colors.yellow};
+			}
+			&:last-child {
+				background-color: ${props => props.theme.colors.red};
+			}
+		}
+	}
+}
+
+.graphSection {
+}
+.graph {
+	overflow-x: auto;
+	max-width: 100%;
+}
 `;
