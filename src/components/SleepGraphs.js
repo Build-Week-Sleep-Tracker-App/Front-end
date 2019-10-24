@@ -98,7 +98,11 @@ function SleepGraphs({ user, tracking, toggleMotionTracking }) {
 	return (
 		<section className="graphSection">
 			<div className="start_tracking">
-				<h1 className="text">Hours of sleep over time</h1>
+				<h1 className="text">Visualize your sleep patterns</h1>
+				<h4>As you enter sleep data below, it will display here.</h4>
+				<p>Alternatively, visit this page on a mobile device and click the button below to enable
+					automated sleep tracking.
+				</p>
 				<button onClick={e => toggleMotionTracking()}>Start tracking now</button>
 			</div>
 			{ tracking ? <MotionTracker /> : user.sleepData.length > 0 ? <div className="graph">

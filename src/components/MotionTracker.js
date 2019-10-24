@@ -61,8 +61,8 @@ const formatXAxis = tick => {
         <LineChart width={1000} height={400} data={data}>
           <Line type="monotone" dataKey="acceleration" stroke="rgba(29, 161, 242, 1)" />
           <CartesianGrid stroke="ccc" />
-          <XAxis dataKey="time" tickFormatter={formatXAxis}></XAxis>
-          <YAxis type="number" domain={[0, 20]}></YAxis>
+          <XAxis dataKey="time" tickFormatter={formatXAxis} tick={false}></XAxis>
+          <YAxis type="number" domain={[0, 20]} tick={false}></YAxis>
         </LineChart>
       </div> 
     );
