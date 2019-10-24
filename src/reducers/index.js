@@ -38,7 +38,14 @@ export const loginReducer = (state = initialLoginState, action) => {
 				userID: action.payload
 			};
 		case types.LOGOUT:
-			return initialLoginState;
+			localStorage.removeItem('sleep_tracker_token');
+			localStorage.removeItem('sleep_tracker_user');
+			localStorage.removeItem('sleep_tracker_user_id');
+			return {
+				isLoggingIn: false,
+				isLoggedIn: (getUserID() > 0),
+				userID: null
+			};
 		default:
 			return state;
 	}
@@ -80,9 +87,9 @@ const userReducer = (state = initialUserState, action) => {
 				...state,
 				...action.payload
 			};
+		/*
 		case types.ADD_SLEEP_ENTRY:
 			sleepEntryID++;
-			console.log('sleepEntryID', sleepEntryID);
 			return {
 				...state,
 				sleepData: state.sleepData.concat({
@@ -104,6 +111,7 @@ const userReducer = (state = initialUserState, action) => {
 				...state,
 				sleepData: state.sleepData.filter(entry => entry.id !== action.payload)
 			};
+		*/
 		default:
 			return state;
 	}
@@ -114,9 +122,12 @@ const editEntryReducer = (state = 0, action) => {
 		case types.START_EDIT_SLEEP_ENTRY:
 			return action.payload.id;
 		case types.LOGOUT:
+		case types.SET_USER:
+		/*	
 		case types.ADD_SLEEP_ENTRY:
 		case types.EDIT_SLEEP_ENTRY:
 		case types.DELETE_SLEEP_ENTRY:
+		*/
 			return 0;
 		default:
 			return state;
