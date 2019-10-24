@@ -203,97 +203,16 @@ fieldset {
   font-size: 16px;
 }
 
-/* mobile screen size */
-@media (max-width: 500px) {
-  .form-container {
-    max-width: 100%;
-    margin: 0 auto;
-    height: 450px;
-    margin: 10px;
-  }
-
-  .form-group {
-    max-width: 80%;
-  }
-}
-
-/* tablet screen size */
-@media (max-width: 700px) {
-  .form-container {
-    max-width: 100%;
-    margin: 0 auto;
-    height: 300px;
-    margin: 10px;
-  }
-
-  .form-group {
-    max-width: 80%;
-  }
-}
-
-
-
-
-
-
-
-
-
-
 .forms {
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+	height: calc(100vh - 188px);
   padding-top: 30px;
+	.inner {
+		height: auto;
+	}
 }
-
-/* mobile screen size */
-@media (max-width: 500px) {
-  .forms {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-/* tablet screen size */
-@media (max-width: 800px) {
-  .forms {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-.logout-container {
-  margin: 0 auto;
-  margin-top: 150px;
-  width: 50%;
-  text-align: center;
-  height: 200px;
-  padding-top: 50px;
-  //box-shadow: 2px 2px grey;
-  //border: 1px solid silver;
-}
-
-
-
-
-
-
-
-
 
 footer {
 	padding-top: 2px;

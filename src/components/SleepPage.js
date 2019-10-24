@@ -7,12 +7,11 @@ import SleepEntryFormik from './SleepEntryForm';
 
 const SleepPage = ({ getUser }) => {
 	useEffect(() => {
-		let user = localStorage.getItem('sleep_tracker_user');
-		user = user ? JSON.parse(user) : user;
-		if (!user || !user.id) {
+		let userid = localStorage.getItem('sleep_tracker_user_id');
+		if (!userid) {
 			getUser();
 		}
-	}, [])
+	}, [getUser])
 	return (
 		<main className="inner">
 			<SleepGraphs />
