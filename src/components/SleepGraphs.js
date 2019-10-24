@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import moment from "moment";
+import { connect } from "react-redux";
 import {
 	LineChart,
 	ScatterChart,
@@ -12,6 +13,8 @@ import {
 	CartesianGrid,
 	XAxis
 } from "recharts";
+import * as actionCreators from "../actions/actionCreators";
+import MotionTracker from "./MotionTracker";
 
 const dummySleepData = [
 	{
@@ -90,23 +93,28 @@ const formatXAxis = tick => {
 	return moment(tick).format("MMM Do YYYY");
 };
 
-export default function SleepGraphs(props) {
+function SleepGraphs({ user, tracking, toggleMotionTracking }) {
+
 	return (
 		<section className="graphSection">
-			<h1 className="text">Hours of sleep over time</h1>
-			<div className="graph">
-				<LineChart width={1000} height={400} data={dummySleepData}>
+			<div className="start_tracking">
+				<h1 className="text">Hours of sleep over time</h1>
+				<button onClick={e => toggleMotionTracking()}>Start tracking now</button>
+			</div>
+			{ tracking ? <MotionTracker /> : user.sleepData.length > 0 ? <div className="graph">
+				<LineChart width={1000} height={400} data={user.sleepData}>
 					<Line type="monotone" dataKey="hours" stroke="rgba(29, 161, 242, 1)" />
 					<CartesianGrid stroke="ccc" />
 					<XAxis dataKey="end" tickFormatter={formatXAxis}>
-						{/* <Label value="Date" offset={-20} position="insideBottom" /> */}
+						{<Label value="Date" offset={-20} position="insideBottom" /> }
 					</XAxis>
 					<YAxis>
-						{/* <Label value="Hours" offset={0} position="insideLeft" /> */}
+						 <Label value="Hours" offset={0} position="insideLeft" /> */}
 					</YAxis>
 					<Tooltip />
 				</LineChart>
-			</div>
+			</div> : <div className="graph">Not enough data</div>}
+			
 			{/* 
 	  <h1>Average mood score versus hours of sleep</h1>
 	  <ScatterChart width={1000} height={400} data={dummySleepData} margin={{ top: 20, bottom: 20, right: 20}}>
@@ -121,4 +129,6 @@ export default function SleepGraphs(props) {
 		</section>
 	);
 }
+
+export default connect(state => state, actionCreators)(SleepGraphs)
 

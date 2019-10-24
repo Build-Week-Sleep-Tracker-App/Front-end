@@ -9,7 +9,6 @@ const DEVICE_MOTION_THRESHOLD = 0.1;
 function MotionTracker() {
   // this probably needs refactoring to use redux
   const [motionData, setMotionData] = useState([]);
-  const [isTracking, setTracking] = useState(false);
   const [chartShouldDisplay, setChartToDisplay] = useState(false);
   useEventListener("devicemotion", ({ acceleration, rotationRate }) => {
     const deviceMotionArr = [
@@ -20,7 +19,6 @@ function MotionTracker() {
       rotationRate.gamma,
       rotationRate.delta
     ];
-    if (isTracking) {
       if (deviceMotionArr.some(el => el > DEVICE_MOTION_THRESHOLD)) {
         setMotionData([
           ...motionData,
@@ -38,27 +36,15 @@ function MotionTracker() {
         ]);
         console.log(motionData);
       }
-    }
   });
-
-  const startTracking = event => {
-    setTracking(!isTracking);
-  };
-
+/* 
   const renderChartClickHandler = event => {
     setChartToDisplay(!chartShouldDisplay);
-  };
+  }; */
 
   return (
     <div className="motion-tracker">
-      <h1>Click the button below to start tracking a new sleep session.</h1>
-      <button onClick={startTracking}>Toggle movement tracker</button>
-      <button onClick={renderChartClickHandler}>Render sleep chart</button>
-      <h3>
-        {isTracking === true ? "Tracking movements" : "Not tracking movements"}
-      </h3>
-      <h3>25</h3>
-      {chartShouldDisplay === true ? <MotionChart data={motionData} /> : null}
+      <MotionChart data={motionData} />
     </div>
   );
 }   
@@ -70,7 +56,7 @@ const formatXAxis = tick => {
   const MotionChart = ({ data }) => {
     console.log(data.map(motionEntry => motionEntry.acceleration));
     return (
-       <div>
+      <div className="graph">
         <h1>Sleep Motion Graph</h1>
         <LineChart width={1000} height={400} data={data}>
           <Line type="monotone" dataKey="acceleration" stroke="rgba(29, 161, 242, 1)" />
