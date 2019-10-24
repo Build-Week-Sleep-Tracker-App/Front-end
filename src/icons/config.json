@@ -1,0 +1,82 @@
+{
+  "name": "sleeptracker",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "b86df50a2d898bfcd371fa86c0b8b2fb",
+      "css": "user",
+      "code": 62144,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "06301c50d89b5d3e651bd07ebd6d7de7",
+      "css": "cancel",
+      "code": 59398,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "627abcdb627cb1789e009c08e2678ef9",
+      "css": "twitter",
+      "code": 61593,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "e9107949dd6c9e8ab2b29ae07156e38c",
+      "css": "linkedin",
+      "code": 61665,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "5e0a374728ffa8d0ae1f331a8f648231",
+      "css": "github",
+      "code": 61715,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "f48ae54adfb27d8ada53d0fd9e34ee10",
+      "css": "delete",
+      "code": 59395,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "f5999a012fc3752386635ec02a858447",
+      "css": "download",
+      "code": 61677,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1e77a2yvsq3owssduo2lcgsiven57iv5",
+      "css": "edit",
+      "code": 59392,
+      "src": "typicons"
+    },
+    {
+      "uid": "cbc328d1c779a2b9e3b1199d904199a5",
+      "css": "very-happy",
+      "code": 59404,
+      "src": "fontelico"
+    },
+    {
+      "uid": "c64623255a4a7c72436b199b05296c4f",
+      "css": "happy",
+      "code": 59393,
+      "src": "fontelico"
+    },
+    {
+      "uid": "fd59eac4d575b48eb156590b63a355fd",
+      "css": "meh",
+      "code": 59394,
+      "src": "fontelico"
+    },
+    {
+      "uid": "53ed8570225581269cd7eff5795e8bea",
+      "css": "sad",
+      "code": 59396,
+      "src": "fontelico"
+    }
+  ]
+}
