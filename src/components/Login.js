@@ -6,7 +6,7 @@ import './styles/forms.css';
 function Login({ errors, touched }) {
   return (
     <div className="form-container">
-      <h1 className="text">Login</h1>
+      <h1 className="text">Log-IN</h1>
       <Form className="form-group">
         <Field className="input" type="text" name="username" placeholder="Username" />
         <Field className="input" type="password" name="password" placeholder="Password" />

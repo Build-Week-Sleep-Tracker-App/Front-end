@@ -19,6 +19,15 @@ export const login = (user, history) => dispatch => {
 		});
 };
 
+export const logout = () => {
+	// remove token from local storage
+	localStorage.removeItem('sleep_tracker_token');
+	localStorage.removeItem('sleep_tracker_user_id');
+	return {
+		  type: types.LOGOUT,
+	  }
+  };
+  
 export const signUp = (user) => dispatch => {
 	axiosWithAuth().post('/api/register', user)
 		.then(res => {

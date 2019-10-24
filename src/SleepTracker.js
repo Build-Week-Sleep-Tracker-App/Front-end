@@ -9,7 +9,7 @@ import Logout from "./components/Logout";
 export default function SleepTracker() {
   return (
     <div className="sleepTracker">
-      <Header />
+      <Header /> 
       <Switch>
         <Route exact path="/" component={LoginPage} />
         <PrivateRoute path="/sleep" component={SleepPage} />
