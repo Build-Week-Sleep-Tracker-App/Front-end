@@ -58,7 +58,7 @@ const formatXAxis = tick => {
     return (
       <ResponsiveContainer>
       <div className="graph">
-        <h1>Sleep Motion Graph</h1>
+        <h1>Sleep Motion</h1>
         <LineChart data={data}>
           <Line type="monotone" dataKey="acceleration" stroke="rgba(29, 161, 242, 1)" />
           <CartesianGrid stroke="ccc" />
