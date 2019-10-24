@@ -4,7 +4,6 @@ import { PrivateRoute } from "./utils";
 import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
 import SleepPage from "./components/SleepPage";
-import Logout from "./components/Logout";
 import Footer from "./components/Footer";
 import MotionTracker from './components/MotionTracker';
 
