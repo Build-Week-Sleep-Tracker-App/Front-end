@@ -10,7 +10,6 @@ const Footer = props => {
 			<div className="inner">
 				<div className="logo">
 					<img src={logo} alt="Logo" />
-					<span>Sleep Tracker App</span>
 				</div>
 				<div className="moreInfo">
 					<a href="https://awesome-sleep-tracker.netlify.com/" target="_blank" rel="noopener noreferrer">Marketing</a>
