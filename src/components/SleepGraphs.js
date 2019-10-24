@@ -95,13 +95,25 @@ const formatXAxis = tick => {
 };
 
 const CustomToolTip = props => {
-  console.log(props);
   if (props.active) {
+    const startTime = moment(props.payload[0].payload.start);
+    const endTime = moment(props.payload[0].payload.end);
+    const preciseDiff = moment(endTime.diff(startTime)).format("h:mm");
+    const preciseDiffArr = preciseDiff.split("");
+    const minutesArr = [
+      preciseDiffArr[preciseDiffArr.length - 2],
+      preciseDiffArr[preciseDiffArr.length - 1]
+    ].filter(num => num > 0);
+    const minutes = minutesArr.join("");
+    const hourFormatted = preciseDiffArr[0] > 1 ? "hours" : "hour";
+    const minutesFormatted =
+      minutes > 1 ? "minutes" : "minute";
+    console.log(minutes);
     return (
       <div>
-        <p style={{width: "100px"}}>{`On ${moment(props.label).format(
+        <p style={{ width: "100px" }}>{`On ${moment(props.label).format(
           "MMMM Do YYYY"
-        )}, you got ${props.payload[0].value} hours of sleep.`}</p>
+        )}, you slept for ${preciseDiffArr[0]} ${hourFormatted}${minutes ? `, ${minutes} ${minutesFormatted}` : ``}.`}</p>
       </div>
     );
   } else return null;
@@ -113,7 +125,11 @@ function SleepGraphs({ user, tracking, toggleMotionTracking }) {
       <div className="start_tracking">
         <h1 className="text text-center">Visualize your sleep pattern</h1>
         <button className="button" onClick={e => toggleMotionTracking()}>
-          Enable realtime tracking
+          {!tracking ? (
+            <span>Enable realtime tracking</span>
+          ) : (
+            <span>Disable realtime tracking</span>
+          )}
         </button>
       </div>
       {tracking ? (
@@ -124,29 +140,33 @@ function SleepGraphs({ user, tracking, toggleMotionTracking }) {
             width={1000}
             height={400}
             data={user.sleepData}
-			margin={{ top: 20, right: 10}}
+            margin={{ top: 20, right: 10 }}
           >
             <Line
               type="monotone"
               dataKey="hours"
-			  stroke="rgba(29, 161, 242, 1)"
-			  strokeWidth={2}
-			  fill="#8884d8"
+              stroke="rgba(29, 161, 242, 1)"
+              strokeWidth={2}
+              fill="#8884d8"
             />
             <CartesianGrid stroke="ccc" />
             <XAxis dataKey="end" tickFormatter={formatXAxis}></XAxis>
             <YAxis tick={false}>
-{              <Label
-                value="Hours"
-                position="insideLeft"
-                style={{ fill: "#76747E" }}
-              />}
+              {
+                <Label
+                  value="Hours"
+                  position="insideLeft"
+                  style={{ fill: "#76747E" }}
+                />
+              }
             </YAxis>
             <Tooltip content={<CustomToolTip />} />
           </LineChart>
         </div>
       ) : (
-        <div className="graph">Not enough data</div>
+        <div className="graph">
+          Not enough data. Add sleep entries below to see them displayed here!
+        </div>
       )}
     </section>
   );
