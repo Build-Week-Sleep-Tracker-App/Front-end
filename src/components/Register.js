@@ -13,6 +13,7 @@ function Register({ errors, touched }) {
 					name="username"
 					placeholder="Username"
 					required="required"
+					autoComplete="username"
 				/>
 				{touched.username && errors.username && <p>{errors.username}</p>}
 				<Field
@@ -21,6 +22,7 @@ function Register({ errors, touched }) {
 					name="password"
 					placeholder="Password"
 					required="required"
+					autoComplete="new-password"
 				/>
 				{touched.password && errors.password && <p>{errors.password}</p>}
 				<Field
@@ -29,6 +31,7 @@ function Register({ errors, touched }) {
 					name="confirmPassword"
 					placeholder="Confirm Password"
 					required="required"
+					autoComplete="new-password"
 				/>
 				{touched.confirmPassword && errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 				<Field
