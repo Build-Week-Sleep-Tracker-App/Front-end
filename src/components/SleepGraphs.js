@@ -95,14 +95,14 @@ export default function SleepGraphs(props) {
 		<section className="graphSection">
 			<h1 className="text">Hours of sleep over time</h1>
 			<div className="graph">
-				<LineChart width={1000} height={400} data={dummySleepData} margin={{ bottom: 100, right: 20 }}>
+				<LineChart width={1000} height={400} data={dummySleepData}>
 					<Line type="monotone" dataKey="hours" stroke="rgba(29, 161, 242, 1)" />
 					<CartesianGrid stroke="ccc" />
 					<XAxis dataKey="end" tickFormatter={formatXAxis}>
-						<Label value="Date" offset={-20} position="insideBottom" />
+						{/* <Label value="Date" offset={-20} position="insideBottom" /> */}
 					</XAxis>
 					<YAxis>
-						<Label value="Hours" offset={0} position="insideLeft" />
+						{/* <Label value="Hours" offset={0} position="insideLeft" /> */}
 					</YAxis>
 					<Tooltip />
 				</LineChart>
