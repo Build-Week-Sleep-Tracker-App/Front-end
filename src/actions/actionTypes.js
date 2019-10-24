@@ -1,5 +1,6 @@
 export const LOGIN = 'LOGIN';
 export const LOGIN_START = "LOGIN_START"
+export const LOGOUT = 'LOGOUT';
 export const SIGNUP = 'SIGNUP';
 export const LOADING = 'LOADING';
 export const SET_USER = 'SET_USER';

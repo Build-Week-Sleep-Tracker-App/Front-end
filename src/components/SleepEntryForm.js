@@ -21,37 +21,64 @@ const SleepEntryForm = ({ setValues, errors, touched, isEditingEntry, user }) =>
 		}
 	}, [isEditingEntry])
 	return (
-		<Form>
-			<Field type="datetime-local" name="start" />
-			{touched.start && errors.start && <p>{errors.start}</p>}
-			<Field type="datetime-local" name="end" />
-			{touched.end && errors.end && <p>{errors.end}</p>}
-			<label>
-				How was your mood before going to bed?
-				<Field type="radio" name="bed_t_tracking" value="1" component={Radio} />
-				<Field type="radio" name="bed_t_tracking" value="2" component={Radio} />
-				<Field type="radio" name="bed_t_tracking" value="3" component={Radio} />
-				<Field type="radio" name="bed_t_tracking" value="4" component={Radio} />
-			</label>
-			{touched.bed_t_tracking && errors.bed_t_tracking && <p>{errors.bed_t_tracking}</p>}
-			<label>
-				How was your mood after waking up?
-				<Field type="radio" name="work_t_tracking" value="1" component={Radio} />
-				<Field type="radio" name="work_t_tracking" value="2" component={Radio} />
-				<Field type="radio" name="work_t_tracking" value="3" component={Radio} />
-				<Field type="radio" name="work_t_tracking" value="4" component={Radio} />
-			</label>
-			{touched.work_t_tracking && errors.work_t_tracking && <p>{errors.work_t_tracking}</p>}
-			<label>
-				How was your mood during the day?
-				<Field type="radio" name="average_rating" value="1" component={Radio} />
-				<Field type="radio" name="average_rating" value="2" component={Radio} />
-				<Field type="radio" name="average_rating" value="3" component={Radio} />
-				<Field type="radio" name="average_rating" value="4" component={Radio} />
-			</label>
-			{touched.average_rating && errors.average_rating && <p>{errors.average_rating}</p>}
-			<button type="submit">Submit entry</button>
-		</Form>
+		<section className="sleepEntryForm">
+			<h1 className="text">{isEditingEntry > 0 ? 'Edit' : 'Add'} sleep session{isEditingEntry > 0 ? ' #' + isEditingEntry : null}</h1>
+			<Form>
+				<div className="form-group-cols">
+					<div className="form-col">
+						<fieldset>
+							<legend>How was your mood before going to bed?</legend>
+							<Field type="radio" name="bed_t_tracking" value="1" component={Radio} required="required" />
+							<Field type="radio" name="bed_t_tracking" value="2" component={Radio} required="required" />
+							<Field type="radio" name="bed_t_tracking" value="3" component={Radio} required="required" />
+							<Field type="radio" name="bed_t_tracking" value="4" component={Radio} required="required" />
+							{touched.bed_t_tracking && errors.bed_t_tracking && <p>{errors.bed_t_tracking}</p>}
+						</fieldset>
+						<fieldset>
+							<legend>How was your mood after waking up?</legend>
+							<Field type="radio" name="work_t_tracking" value="1" component={Radio} required="required" />
+							<Field type="radio" name="work_t_tracking" value="2" component={Radio} required="required" />
+							<Field type="radio" name="work_t_tracking" value="3" component={Radio} required="required" />
+							<Field type="radio" name="work_t_tracking" value="4" component={Radio} required="required" />
+							{touched.work_t_tracking && errors.work_t_tracking && <p>{errors.work_t_tracking}</p>}
+						</fieldset>
+						<fieldset>
+							<legend>How was your mood during the day?</legend>
+							<Field type="radio" name="average_rating" value="1" component={Radio} required="required" />
+							<Field type="radio" name="average_rating" value="2" component={Radio} required="required" />
+							<Field type="radio" name="average_rating" value="3" component={Radio} required="required" />
+							<Field type="radio" name="average_rating" value="4" component={Radio} required="required" />
+							{touched.average_rating && errors.average_rating && <p>{errors.average_rating}</p>}
+						</fieldset>
+					</div>
+					<div className="form-col">
+						<fieldset>
+							<legend>Start date and time of sleep session:</legend>
+							<Field
+								className="input"
+								type="datetime-local"
+								name="start"
+								pattern="\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
+								required="required"
+							/>
+							{touched.start && errors.start && <p>{errors.start}</p>}
+						</fieldset>
+						<fieldset>
+							<legend>End date and time of sleep session:</legend>
+							<Field
+								className="input"
+								type="datetime-local"
+								name="end"
+								pattern="\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
+								required="required"
+							/>
+							{touched.end && errors.end && <p>{errors.end}</p>}
+						</fieldset>
+					</div>
+				</div>
+				<button className="button" type="submit">Submit</button>
+			</Form>
+		</section>
 	)
 }
 
@@ -89,14 +116,20 @@ const SleepEntryFormik = withFormik({
 export default connect(state => state, actionCreators)(SleepEntryFormik);
 
 const Radio = ({ field, type, form, value }) => {
+	const icons = ['icon-sad', 'icon-meh', 'icon-happy', 'icon-very-happy'];
 	return (
-		<input
-			name={field.name}
-			type={type}
-			value={value}
-			checked={form.values[field.name] === value}
-			onChange={field.onChange}
-			onBlur={field.onBlur}
-		/>
+		<label htmlFor={field.name + '_' + value}>
+			<input
+				id={field.name + '_' + value}
+				className="input-radio"
+				name={field.name}
+				type={type}
+				value={value}
+				checked={form.values[field.name] === value}
+				onChange={field.onChange}
+				onBlur={field.onBlur}
+			/>
+			<i className={icons[value - 1]}></i>
+		</label>
 	);
 }

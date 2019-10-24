@@ -14,11 +14,11 @@ const SleepPage = ({ getUser }) => {
 		}
 	}, [])
 	return (
-		<>
-			{/* <SleepGraphs /> */}
-			<SleepEntryList />
+		<main className="inner">
+			<SleepGraphs />
 			<SleepEntryFormik />
-        </>
+			<SleepEntryList />
+		</main>
 	);
 }
 

@@ -3,22 +3,22 @@ import Login from './Login';
 import Register from './Register';
 import { connect } from 'react-redux';
 import { signUp, login } from '../actions/actionCreators';
-import './styles/loginPage.css';
 
 const LoginPage = props => {
-  return (
-    <div className="forms">
-      <Login
-        className="form-item"
-        login={props.login}
-        history={props.history}
-      />
-      <Register className="form-item" signUp={props.signUp} />
-    </div>
-  );
+	return (
+		<section className="forms">
+			<div className="inner">
+				<Login
+					login={props.login}
+					history={props.history}
+				/>
+				<Register signUp={props.signUp} />
+			</div>
+		</section>
+	);
 };
 
 export default connect(
-  state => state,
-  { signUp, login }
+	state => state,
+	{ signUp, login }
 )(LoginPage);
