@@ -18,7 +18,6 @@ const store = mockStore(initialState);
 describe('Header component', () => {
   test('should render Header correctly', () => {
     const wrapper = shallow(<Header store={store} />);
-    console.log(wrapper.debug());
     expect(wrapper).toMatchSnapshot();
   });
 });
