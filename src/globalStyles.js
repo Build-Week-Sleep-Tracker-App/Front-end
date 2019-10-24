@@ -1,13 +1,51 @@
 import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
 
+:root {
+	font-size: 70%;
+	@media screen and (min-width: 425px) {
+		font-size: 80%;
+	}
+	@media screen and (min-width: 640px) {
+		font-size: 90%;
+	}
+	@media screen and (min-width: 720px) {
+		font-size: 100%;
+	}
+}
+
 body {
 	color: ${props => props.theme.fonts.gray};
 	font-family: ${props => props.theme.fonts.poppins};
 }
 
 .navbar {
-	padding: .5rem 10px;
+	padding: .5rem 0;
+	justify-content: space-between;
+	@media screen and (min-width: 480px) {
+		padding: .5rem 10px;
+	}
+	img {
+		width: 100%;
+		max-width: 60px;
+		@media screen and (min-width: 720px) {
+			max-width: 80px;
+		}
+	}
+	.menu {
+		a {
+			padding: 10px;
+			&.active {
+				color: ${props => props.theme.colors.blue};
+				text-decoration: none;
+			}
+			@media screen and (min-width: 480px) {
+				&:last-child {
+					margin-right: -10px;
+				}
+			}
+		}
+	}
 }
 .inner {
 	width: 100%;
@@ -40,30 +78,26 @@ a {
 	}
 }
 
-.navbar .navbar-collapse {
-	a {
-		padding: 10px;
-		&.active {
-			color: ${props => props.theme.colors.blue};
-			text-decoration: none;
-		}
-		&:last-child {
-			margin-right: -10px;
-		}
-	}
-
-}
-
 .recharts-wrapper {
 	margin: 0 auto;
 }
 
+
 .forms {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0 30px;
+	min-height: calc(100vh - 143px);
+	@media screen and (min-width: 720px) {
+		min-height: calc(100vh - 188px);
+	}
 	.inner {
 		display: flex;
 		flex-flow: row wrap;
 		align-items: stretch;
 		justify-content: space-between;
+		height: auto;
 	}
 	.form-column {
 		width: 100%;
@@ -87,14 +121,6 @@ a {
 	}
 }
 
-.form-container {
-  border: 1px solid silver;
-  width: 500px;
-  height: 450px;
-  font-family: 'Playfair Display';
-  box-shadow: 2px 2px grey;
-}
-
 .text {
 	padding: 10px 0 20px;
 	margin-left: 10px;
@@ -113,6 +139,9 @@ a {
 
 .sleepEntryForm {
 	padding-bottom: 30px;
+	h1 {
+		padding-bottom: 10px;
+	}
 }
 .sleepEntryListSection {
 	padding-bottom: 30px;
@@ -194,24 +223,14 @@ fieldset {
 
 .button {
   border: none;
-  width: 100px;
   height: 40px;
 	margin: 10px 0;
   border-radius: 8px;
   background: ${props => props.theme.colors.red}; // blue
   color: white;
   font-size: 16px;
-}
-
-.forms {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-	height: calc(100vh - 188px);
-  padding-top: 30px;
-	.inner {
-		height: auto;
-	}
+	padding: 0 20px;
+	white-space: nowrap;
 }
 
 footer {
@@ -227,7 +246,11 @@ footer {
 		color: white;
 	}
 	img {
-		max-width: 80px;
+		width: 100%;
+		max-width: 60px;
+		@media screen and (min-width: 720px) {
+			max-width: 80px;
+		}
 	}
 	a {
 		color: white;
@@ -241,7 +264,6 @@ footer {
 }
 
 .sleepEntryList {
-	padding: 0 10px;
 	display: flex;
 	justify-content: flex-start;
 	flex-flow: row wrap;
@@ -260,15 +282,21 @@ footer {
 			max-width: calc((100% / 2) - 12px);
 			flex-basis: calc((100% / 2) - 12px);
 			margin-right: 12px;
+			&:nth-child(2n) {
+				margin-right: 0;
+			}
 		}
 		@media screen and (min-width: 1024px) {
 			max-width: calc((100% / 3) - 12px);
 			flex-basis: calc((100% / 3) - 12px);
 			margin-bottom: 18px;
 			margin-right: 18px;
-		}
-		&:nth-child(3n) {
-			margin-right: 0;
+			&:nth-child(2n) {
+				margin-right: 18px;
+			}
+			&:nth-child(3n) {
+				margin-right: 0;
+			}
 		}
 		.entryInfo {
 			width: 100%;
@@ -318,9 +346,24 @@ footer {
 }
 
 .graphSection {
+	padding-bottom: 30px;
 }
 .graph {
+	margin: 0 10px;
 	overflow-x: auto;
 	max-width: 100%;
+}
+.start_tracking {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	padding-bottom: 20px;
+	button {
+		margin: 0 10px;
+	}
+	@media screen and (min-width: 720px) {
+		flex-direction: row;
+		padding-bottom: 0;
+	}
 }
 `;

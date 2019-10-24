@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 
 const Header = ({ isLoggedIn, logout }) => {
-	console.log({ isLoggedIn, logout })
 	return (
 		<header>
 			<div className="inner">
@@ -16,14 +15,11 @@ const Header = ({ isLoggedIn, logout }) => {
 							<img
 								alt="app-logo"
 								src={logo}
-								width="80"
-								height="80"
 								className="d-inline-block align-top"
 							/>
 						</NavLink>
 					</Navbar.Brand>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-					<Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+					<div className="menu">
 						<NavLink
 							exact
 							to="/"
@@ -39,7 +35,7 @@ const Header = ({ isLoggedIn, logout }) => {
 								Logout
 							</NavLink>
 						) : null}
-					</Navbar.Collapse>
+					</div>
 				</Navbar>
 			</div>
 		</header>
