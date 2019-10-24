@@ -146,6 +146,15 @@ const motionTrackerReducer = (state = false, action) => {
 	}
 };
 
+const isLoadingReducer = (state = false, action) => {
+	switch (action.type) {
+		case types.LOADING:
+			return action.payload;
+		default:
+			return state;
+	}
+};
+
 export default {
 	initialSignupState,
 	signUpReducer,
@@ -157,5 +166,7 @@ export default {
 	userReducer,
 
 	editEntryReducer,
-	motionTrackerReducer
+	motionTrackerReducer,
+
+	isLoadingReducer
 };

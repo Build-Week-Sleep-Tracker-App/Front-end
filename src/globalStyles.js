@@ -369,4 +369,20 @@ footer {
 .alignWithHeader {
 	padding: 0 10px;
 }
+
+.loading {
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: ${props => props.theme.colors.gray50};
+	.spinner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(2);
+	}
+}
 `;

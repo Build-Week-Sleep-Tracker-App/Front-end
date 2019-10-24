@@ -58,7 +58,7 @@ const SleepEntryForm = ({ setValues, errors, touched, isEditingEntry, user }) =>
 								className="input"
 								type="datetime-local"
 								name="start"
-								pattern="\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
+								pattern="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}"
 								required="required"
 							/>
 							{touched.start && errors.start && <p>{errors.start}</p>}
@@ -69,7 +69,7 @@ const SleepEntryForm = ({ setValues, errors, touched, isEditingEntry, user }) =>
 								className="input"
 								type="datetime-local"
 								name="end"
-								pattern="\d{2}-\d{2}-\d{4} \d{2}:\d{2}"
+								pattern="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}"
 								required="required"
 							/>
 							{touched.end && errors.end && <p>{errors.end}</p>}

@@ -3,6 +3,7 @@ import moment from 'moment';
 import { axiosWithAuth } from '../utils';
 
 export const login = (user, history) => dispatch => {
+  dispatch(setLoading(true));
   dispatch({ type: types.LOGIN_START });
   axiosWithAuth()
     .post('/api/login', user)
@@ -11,6 +12,7 @@ export const login = (user, history) => dispatch => {
       localStorage.setItem('sleep_tracker_user_id', res.data.id);
       dispatch({ type: types.LOGIN, payload: res.data.id });
       history.push('/sleep');
+			dispatch(setLoading(false));
     })
     .catch(err => {
       console.log(err);
@@ -26,11 +28,13 @@ export const logout = () => {
 };
 
 export const signUp = user => dispatch => {
+  dispatch(setLoading(true));
   axiosWithAuth()
     .post('/api/register', user)
     .then(res => {
       console.log(res);
       dispatch({ type: types.SIGNUP });
+			dispatch(setLoading(false));
     })
     .catch(err => {
       console.log(err);
