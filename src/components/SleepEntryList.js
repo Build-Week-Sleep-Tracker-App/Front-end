@@ -44,11 +44,11 @@ const SleepEntryList = ({ user, isEditingEntry, startEditSleepEntry, deleteSleep
 						</div>
 						<div className="entryInfo">
 							<span>Mood before sleep</span>
-							<span>{scoreToIcon(entry.bed_t_tracking)}</span>
+							<span>{scoreToIcon(entry.bed_t_rating)}</span>
 						</div>
 						<div className="entryInfo">
 							<span>Mood after waking up</span>
-							<span>{scoreToIcon(entry.work_t_tracking)}</span>
+							<span>{scoreToIcon(entry.work_t_rating)}</span>
 						</div>
 						<div className="entryInfo">
 							<span>Mood during day</span>

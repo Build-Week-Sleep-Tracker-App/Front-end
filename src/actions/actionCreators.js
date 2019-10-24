@@ -20,9 +20,6 @@ export const login = (user, history) => dispatch => {
 };
 
 export const logout = () => {
-  // remove token from local storage
-  localStorage.removeItem('sleep_tracker_token');
-  localStorage.removeItem('sleep_tracker_user_id');
   return {
 		type: types.LOGOUT,
 	}
@@ -56,34 +53,36 @@ export const setUser = data => {
   };
 };
 
+/*
 const addUserSleepEntry = entry => {
   return {
     type: types.ADD_SLEEP_ENTRY,
     payload: entry
   };
 };
-
+*/
+/*
 const editUserSleepEntry = entry => {
   return {
     type: types.EDIT_SLEEP_ENTRY,
     payload: entry
   };
 };
-
+*/
 export const startEditSleepEntry = entry => {
   return {
     type: types.START_EDIT_SLEEP_ENTRY,
     payload: entry
   };
 };
-
+/*
 const deleteUserSleepEntry = id => {
   return {
     type: types.DELETE_SLEEP_ENTRY,
     payload: id
   };
 };
-
+*/
 export const setGlobalError = error => {
   return {
     type: types.SET_ERROR,
@@ -99,15 +98,12 @@ export const changeSleepEntryForm = field => {
 };
 
 export const addSleepEntry = entry => dispatch => {
-  //dispatch(setLoading(true));
-  entry.difference = moment(entry.end).diff(moment(entry.start), 'hours');
+  dispatch(setLoading(true));
+  entry.hours = moment(entry.end).diff(moment(entry.start), 'hours');
   entry.start = entry.start.replace('T', ' ');
-  entry.end = entry.end.replace('T', ' ');
-  dispatch(addUserSleepEntry(entry));
-  /*
+	entry.end = entry.end.replace('T', ' ');
 	axiosWithAuth().post(`/api/sleepData`, entry)
 		.then(response => {
-			console.log('response', response.data);
 			dispatch(setUser({ sleepData: response.data }))
 			dispatch(setLoading(false));
 		})
@@ -116,16 +112,14 @@ export const addSleepEntry = entry => dispatch => {
 			dispatch(setLoading(false));
 			dispatch(setGlobalError(err.message));
 		});
-	*/
 };
 
 export const editSleepEntry = entry => dispatch => {
-  //dispatch(setLoading(true));
-  dispatch(editUserSleepEntry(entry));
-  /*
+  dispatch(setLoading(true));
+  //dispatch(editUserSleepEntry(entry));
 	axiosWithAuth().put(`/api/sleepData/${entry.id}`, entry)
 		.then(response => {
-			console.log(response.data);
+			console.log('editSleepEntry', response.data);
 			dispatch(setUser({ sleepData: response.data }))
 			dispatch(setLoading(false));
 		})
@@ -134,17 +128,14 @@ export const editSleepEntry = entry => dispatch => {
 			dispatch(setLoading(false));
 			dispatch(setGlobalError(err.message));
 		});
-	*/
 };
 
 export const deleteSleepEntry = id => dispatch => {
-  //dispatch(setLoading(true));
-  console.log('deleteSleepEntry request', id);
-  dispatch(deleteUserSleepEntry(id));
-  /*
-	axiosWithAuth().delete(`/api/sleepData/${entry.id}`)
+  dispatch(setLoading(true));
+  //dispatch(deleteUserSleepEntry(id));
+	axiosWithAuth().delete(`/api/sleepData/${id}`)
 		.then(response => {
-			console.log(response.data);
+			console.log('deleteSleepEntry', response.data);
 			dispatch(setUser({ sleepData: response.data }))
 			dispatch(setLoading(false));
 		})
@@ -153,7 +144,6 @@ export const deleteSleepEntry = id => dispatch => {
 			dispatch(setLoading(false));
 			dispatch(setGlobalError(err.message));
 		});
-	*/
 };
 
 export const getUser = () => dispatch => {
