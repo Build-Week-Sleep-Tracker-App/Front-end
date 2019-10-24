@@ -21,6 +21,6 @@ const Footer = props => {
 };
 
 export default connect(
-	state => ({ isLoggedIn: state.login.isLoggedIn }),
-	null
+  state => ({ isLoggedIn: state.login.isLoggedIn }),
+  null
 )(Footer);

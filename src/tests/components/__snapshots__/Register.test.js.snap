@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test register component should render register component without crashing 1`] = `ShallowWrapper {}`;
