@@ -25,15 +25,4 @@ describe('test action creators', () => {
     expect(store.getActions()).toEqual(expectedActions);
     expect(store.getActions()).toMatchSnapshot();
   });
-
-  test('should delete the correct sleep entry', () => {
-    const expectedAction = [
-      {
-        type: DELETE_SLEEP_ENTRY,
-        payload: 1
-      }
-    ];
-    store.dispatch(deleteSleepEntry(1));
-    expect(store.getActions()).toEqual(expectedAction);
-  });
 });
