@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {
   LineChart,
   ScatterChart,
+  AreaChart,
   Legend,
   Scatter,
   Line,
@@ -100,7 +101,7 @@ const CustomToolTip = props => {
       <div>
         <p style={{width: "100px"}}>{`On ${moment(props.label).format(
           "MMMM Do YYYY"
-        )}, you got ${props.payload[0].value} hours sleep.`}</p>
+        )}, you got ${props.payload[0].value} hours of sleep.`}</p>
       </div>
     );
   } else return null;
@@ -110,14 +111,9 @@ function SleepGraphs({ user, tracking, toggleMotionTracking }) {
   return (
     <section className="graphSection">
       <div className="start_tracking">
-        <h1 className="text">Visualize your sleep patterns</h1>
-        <h4>As you enter sleep data below, it will display here.</h4>
-        <p>
-          Alternatively, visit this page on a mobile device and click the button
-          below to enable automated sleep tracking.
-        </p>
-        <button onClick={e => toggleMotionTracking()}>
-          Start tracking now
+        <h1 className="text text-center">Visualize your sleep pattern</h1>
+        <button className="button" onClick={e => toggleMotionTracking()}>
+          Enable realtime tracking
         </button>
       </div>
       {tracking ? (
@@ -128,22 +124,23 @@ function SleepGraphs({ user, tracking, toggleMotionTracking }) {
             width={1000}
             height={400}
             data={user.sleepData}
-            margin={{ top: 20, left: 20 }}
+			margin={{ top: 20, right: 10}}
           >
             <Line
               type="monotone"
               dataKey="hours"
-              stroke="rgba(29, 161, 242, 1)"
+			  stroke="rgba(29, 161, 242, 1)"
+			  strokeWidth={2}
+			  fill="#8884d8"
             />
             <CartesianGrid stroke="ccc" />
             <XAxis dataKey="end" tickFormatter={formatXAxis}></XAxis>
             <YAxis tick={false}>
-              <Label
+{              <Label
                 value="Hours"
-                offset={-20}
                 position="insideLeft"
                 style={{ fill: "#76747E" }}
-              />
+              />}
             </YAxis>
             <Tooltip content={<CustomToolTip />} />
           </LineChart>
