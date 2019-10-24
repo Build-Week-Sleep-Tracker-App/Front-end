@@ -168,3 +168,7 @@ export const getUser = () => dispatch => {
     );
   }
 };
+
+export const toggleMotionTracking = () => ({
+  type: types.TOGGLE_TRACKING
+});

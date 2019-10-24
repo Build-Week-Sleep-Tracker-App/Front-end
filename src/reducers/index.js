@@ -134,6 +134,18 @@ const editEntryReducer = (state = 0, action) => {
 	}
 };
 
+const motionTrackerReducer = (state = false, action) => {
+	switch (action.type) {
+		case types.TOGGLE_TRACKING:
+			return !state;
+		case types.LOGOUT:
+		case types.SET_USER:
+			return false;
+		default:
+			return state;
+	}
+};
+
 export default {
 	initialSignupState,
 	signUpReducer,
@@ -144,5 +156,6 @@ export default {
 	initialUserState,
 	userReducer,
 
-	editEntryReducer
+	editEntryReducer,
+	motionTrackerReducer
 };

@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
 import SleepPage from "./components/SleepPage";
 import Footer from "./components/Footer";
+import MotionTracker from './components/MotionTracker';
 
 export default function SleepTracker() {
 	return (
