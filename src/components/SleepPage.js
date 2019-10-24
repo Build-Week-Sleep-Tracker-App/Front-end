@@ -4,6 +4,7 @@ import * as actionCreators from '../actions/actionCreators';
 import SleepGraphs from './SleepGraphs';
 import SleepEntryList from './SleepEntryList';
 import SleepEntryFormik from './SleepEntryForm';
+import SleepRecommendation from './SleepRecommendation';
 
 const SleepPage = ({ getUser }) => {
 	useEffect(() => {
@@ -16,6 +17,7 @@ const SleepPage = ({ getUser }) => {
 	return (
 		<main className="inner">
 			<SleepGraphs />
+			<SleepRecommendation />
 			<SleepEntryFormik />
 			<SleepEntryList />
 		</main>
