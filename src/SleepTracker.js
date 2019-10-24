@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
 import SleepPage from "./components/SleepPage";
 import MotionTracker from './components/MotionTracker';
-import Logout from "./components/Logout";
+/* import Logout from "./components/Logout"; */
 import Footer from "./components/Footer";
 
 export default function SleepTracker() {
@@ -14,7 +14,7 @@ export default function SleepTracker() {
 			<Header />
 			<Route exact path="/" component={LoginPage} />
 			<PrivateRoute path="/sleep" component={SleepPage} />
-			<Route path="/logout" component={Logout} />
+			{/* <Route path="/logout" component={Logout} /> */}
 			<Route path="/tracker" component={MotionTracker} />
 			<Footer />
 		</div>
