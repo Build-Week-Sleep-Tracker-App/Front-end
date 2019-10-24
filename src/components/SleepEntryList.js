@@ -59,7 +59,7 @@ const SleepEntryList = ({ user, isEditingEntry, startEditSleepEntry, deleteSleep
 							<button onClick={onDeleteEntry(entry.id)}><i className="icon-delete"></i></button>
 						</div>
 					</div>
-				)) : <p>Not enough user data</p>}
+				)) : <p className="alignWithHeader">Not enough user data</p>}
 			</div>
 		</section>
 	);

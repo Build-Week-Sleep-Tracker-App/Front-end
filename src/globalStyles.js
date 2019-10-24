@@ -366,4 +366,7 @@ footer {
 		padding-bottom: 0;
 	}
 }
+.alignWithHeader {
+	padding: 0 10px;
+}
 `;
