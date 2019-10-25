@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  LineChart,
-  Line,
   AreaChart,
   Area,
   YAxis,
   XAxis,
-  CartesianGrid,
-  ResponsiveContainer
+  CartesianGrid
 } from "recharts";
 import moment from "moment";
 import useEventListener from "@use-it/event-listener";
@@ -19,7 +16,6 @@ function MotionTracker(props) {
   const [motionData, setMotionData] = useState([]);
   const [deviceCanTrackMotion, setDeviceCanTrackMotion] = useState(true);
   const [isTracking, setTracking] = useState(true)
-  const [chartShouldDisplay, setChartToDisplay] = useState(false);
   useEventListener("devicemotion", ({ acceleration, rotationRate }) => {
     const deviceMotionArr = [
       acceleration.x,
@@ -50,7 +46,7 @@ function MotionTracker(props) {
   });
   return deviceCanTrackMotion ? <div>
     <MotionChart data={motionData} isTracking={isTracking} setTracking={setTracking}/>
-    </div> : <div>Please visit your dashboard on a mobile device to enable motion tracking.</div>;
+    </div> : <p className="alignWithHeader">Please visit your dashboard on a mobile device to enable motion tracking.</p>;
 }
 
 const formatXAxis = tick => {
