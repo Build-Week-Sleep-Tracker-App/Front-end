@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LineChart, Line, YAxis, XAxis, CartesianGrid } from "recharts";
+import { LineChart, Line, YAxis, XAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 import moment from "moment";
 import useEventListener from "@use-it/event-listener";
 
@@ -55,14 +55,14 @@ const formatXAxis = tick => {
   
   const MotionChart = ({ data }) => {
     console.log(data.map(motionEntry => motionEntry.acceleration));
-    return (
+    return (  
       <div className="graph">
         <h1>Sleep Motion Graph</h1>
-        <LineChart width={1000} height={400} data={data}>
+        <LineChart width={600} height={400} data={data}>
           <Line type="monotone" dataKey="acceleration" stroke="rgba(29, 161, 242, 1)" />
           <CartesianGrid stroke="ccc" />
-          <XAxis dataKey="time" tickFormatter={formatXAxis}></XAxis>
-          <YAxis type="number" domain={[0, 20]}></YAxis>
+          <XAxis dataKey="time" tickFormatter={formatXAxis} tick={false}></XAxis>
+          <YAxis type="number" domain={[0, 20]} tick={false}></YAxis>
         </LineChart>
       </div> 
     );
