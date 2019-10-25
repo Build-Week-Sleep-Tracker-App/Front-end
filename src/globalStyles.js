@@ -129,6 +129,10 @@ a {
 	//margin-left: calc(7.5% + 10px);
 }
 
+.text-center {
+	text-align: center;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
