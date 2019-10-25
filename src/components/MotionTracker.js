@@ -40,7 +40,7 @@ function MotionTracker(props) {
             time: moment().format()
           }
         ]);
-        console.log(motionData);
+        //console.log(motionData);
       }
     }
   });

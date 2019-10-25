@@ -87,7 +87,7 @@ function SleepGraphs({ user, tracking, toggleMotionTracking }) {
         </div>
       ) : (
         <div className="graph">
-          <p className="alignWithHeader">Not enough data. Add sleep entries below to see them displayed here!</p>
+          <p>Not enough data. Add sleep entries below to see them displayed here!</p>
         </div>
       )}
     </section>

@@ -391,4 +391,8 @@ footer {
 		transform: translate(-50%, -50%) scale(2);
 	}
 }
+
+.red {
+	color: ${props => props.theme.colors.red};
+}
 `;
