@@ -11,8 +11,9 @@ export const login = (user, history) => dispatch => {
       localStorage.setItem('sleep_tracker_token', res.data.token);
       localStorage.setItem('sleep_tracker_user_id', res.data.id);
       dispatch({ type: types.LOGIN, payload: res.data.id });
-      history.push('/sleep');
 			dispatch(setLoading(false));
+			//history.push('/sleep');
+			window.location.href = '/sleep';
     })
     .catch(err => {
       console.log(err);
@@ -32,7 +33,16 @@ export const signUp = user => dispatch => {
   axiosWithAuth()
     .post('/api/register', user)
     .then(res => {
+			console.log('signup', res.data)
       dispatch({ type: types.SIGNUP });
+      /*login({
+				username: user.username,
+				password: user.password
+			}, {
+				push: (url) => {
+					window.location.href = window.location.href + url;
+				}
+			})*/
 			dispatch(setLoading(false));
     })
     .catch(err => {

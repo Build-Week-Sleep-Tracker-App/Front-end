@@ -1,6 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/actionCreators';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import moment from 'moment';
 
 function Register({ errors, touched }) {
 	return (
@@ -42,7 +45,7 @@ function Register({ errors, touched }) {
 					pattern="\d{2}-\d{2}-\d{4}"
 					required="required"
 				/>
-				{touched.date && errors.date && <p>{errors.date}</p>}
+				{touched.birthdate && errors.birthdate && <p>{errors.birthdate}</p>}
 				<button className="button" type="submit">
 					Register
         </button>
@@ -64,14 +67,15 @@ const FormikRegisterForm = withFormik({
 	validationSchema: Yup.object().shape({
 		username: Yup.string().required('Please enter your username'),
 		password: Yup.string().required('Please enter your password').min(6),
-		birthdate: Yup.date().required('Please enter your birthdate'),
+		birthdate: Yup.date().max(new Date(), 'Invalid birthdate').required('Please enter your birthdate'),
 		confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Your passwords don\'t match')
 	}),
 
 	handleSubmit(values, { resetForm, props }) {
 		props.signUp(values);
+		props.login({ username: values.username, password: values.password });
 		resetForm();
 	}
 })(Register);
 
-export default FormikRegisterForm;
+export default connect(state => state, actionCreators)(FormikRegisterForm);

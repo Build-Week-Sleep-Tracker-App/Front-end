@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/actionCreators';
 import { withFormik, Form, Field } from "formik";
 import * as Yup from 'yup';
 
@@ -31,9 +33,9 @@ const FormikLoginForm = withFormik({
 	}),
 
 	handleSubmit(values, { props, resetForm }) {
-		props.login(values, props.history);
+		props.login(values);
 		resetForm();
 	}
 })(Login);
 
-export default FormikLoginForm;
+export default connect(state => state, actionCreators)(FormikLoginForm);
