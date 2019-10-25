@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import moment from 'moment';
 
 function Register({ errors, touched }) {
 	return (
