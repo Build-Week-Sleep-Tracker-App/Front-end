@@ -11,8 +11,8 @@ export const login = (user, history) => dispatch => {
       localStorage.setItem('sleep_tracker_token', res.data.token);
       localStorage.setItem('sleep_tracker_user_id', res.data.id);
       dispatch({ type: types.LOGIN, payload: res.data.id });
-      history.push('/sleep');
 			dispatch(setLoading(false));
+			window.location.href = '/sleep';
     })
     .catch(err => {
       console.log(err);
@@ -32,7 +32,6 @@ export const signUp = user => dispatch => {
   axiosWithAuth()
     .post('/api/register', user)
     .then(res => {
-      console.log(res);
       dispatch({ type: types.SIGNUP });
 			dispatch(setLoading(false));
     })
@@ -123,7 +122,6 @@ export const editSleepEntry = entry => dispatch => {
   //dispatch(editUserSleepEntry(entry));
 	axiosWithAuth().put(`/api/sleepData/${entry.id}`, entry)
 		.then(response => {
-			console.log('editSleepEntry', response.data);
 			dispatch(setUser({ sleepData: response.data }))
 			dispatch(setLoading(false));
 		})
@@ -139,7 +137,6 @@ export const deleteSleepEntry = id => dispatch => {
   //dispatch(deleteUserSleepEntry(id));
 	axiosWithAuth().delete(`/api/sleepData/${id}`)
 		.then(response => {
-			console.log('deleteSleepEntry', response.data);
 			dispatch(setUser({ sleepData: response.data }))
 			dispatch(setLoading(false));
 		})
@@ -157,7 +154,7 @@ export const getUser = () => dispatch => {
     axiosWithAuth()
       .get(`/api/user/${userID}`)
       .then(response => {
-        console.log(response.data);
+        //console.log('got user', response.data);
         dispatch(setUser(response.data));
         dispatch(setLoading(false));
       })

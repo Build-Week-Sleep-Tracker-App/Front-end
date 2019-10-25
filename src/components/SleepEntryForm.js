@@ -97,8 +97,11 @@ const SleepEntryFormik = withFormik({
 		};
 	},
 	validationSchema: Yup.object().shape({
-		start: Yup.date().required("Please enter the start date and time of this sleep session"),
-		end: Yup.date().required("Please enter the end date and time of this sleep session"),
+		start: Yup.date().max(new Date(), 'Invalid start date').required("Please enter the start date and time of this sleep session"),
+		end: Yup.date().max(new Date(), 'Invalid end date').when(
+			'start',
+			(start, schema) => (start && schema.min(start))
+		).required("Please enter the end date and time of this sleep session"),
 		bed_t_rating: Yup.string().required("Please enter your mood before going to bed"),
 		work_t_rating: Yup.string().required("Please enter your mood after waking up"),
 		average_rating: Yup.string().required("Please enter your average mood during the day"),

@@ -19,8 +19,8 @@ const SleepRecommendation = ({ user }) => {
 	return (
 		<div className="recommendation">
 			<h1 className="text">Our recommendation</h1>
-			<p className="alignWithHeader">You have a total of {totalTimeInBed} hours in bed!</p>
-			<p className="alignWithHeader">Your mood score tends to be highest when you sleep around {optimalMoodAfterGivenHours.hours} hours!</p>
+			<p className="alignWithHeader">You have a total of <span className="red">{totalTimeInBed} hours</span> in bed!</p>
+			<p className="alignWithHeader">Your mood score tends to be highest when you sleep around <span className="red">{optimalMoodAfterGivenHours.hours} hours!</span></p>
 		</div>
 	);
 }

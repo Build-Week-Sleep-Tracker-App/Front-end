@@ -16,7 +16,7 @@ const store = createStore(
 		isLoading: reducers.isLoadingReducer
 	}),
 	// local storage
-	loadState(persistedStateKeysInLocalStorage),
+	// loadState(persistedStateKeysInLocalStorage),
 	// middleware
 	compose(
 		applyMiddleware(thunk),

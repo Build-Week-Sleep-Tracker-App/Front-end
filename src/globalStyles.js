@@ -359,6 +359,7 @@ footer {
 }
 .start_tracking {
 	display: flex;
+	align-items: start;
 	justify-content: space-between;
 	flex-direction: column;
 	padding-bottom: 20px;
@@ -366,6 +367,7 @@ footer {
 		margin: 0 10px;
 	}
 	@media screen and (min-width: 720px) {
+		align-items: center;
 		flex-direction: row;
 		padding-bottom: 0;
 	}
@@ -388,5 +390,9 @@ footer {
 		left: 50%;
 		transform: translate(-50%, -50%) scale(2);
 	}
+}
+
+.red {
+	color: ${props => props.theme.colors.red};
 }
 `;

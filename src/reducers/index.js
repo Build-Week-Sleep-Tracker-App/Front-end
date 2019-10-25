@@ -72,8 +72,8 @@ const initialUserState = {
 };
 const userReducer = (state = initialUserState, action) => {
 	switch (action.type) {
-		case types.LOGOUT:
-			return initialUserState;
+		/*case types.LOGOUT:
+			return initialUserState;*/
 		case types.LOGIN:
 			return {
 				id: getUserID(),
