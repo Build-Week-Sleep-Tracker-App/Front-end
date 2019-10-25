@@ -10,7 +10,7 @@ import moment from "moment";
 import useEventListener from "@use-it/event-listener";
 
 // this adjusts the sensitivity of the tracker, if set to 0 it will pick up all movement
-const DEVICE_MOTION_THRESHOLD = 0.1;
+const DEVICE_MOTION_THRESHOLD = 0.01;
 
 function MotionTracker(props) {
   const [motionData, setMotionData] = useState([]);
@@ -77,6 +77,7 @@ const MotionChart = ({ data, isTracking, setTracking }) => {
           type="number"
           domain={[0, 1.5]}
           tickFormatter={formatYAxis}
+          tick={false}
         ></YAxis>
       </AreaChart>
     </div>
