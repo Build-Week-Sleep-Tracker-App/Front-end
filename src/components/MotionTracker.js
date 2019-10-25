@@ -11,7 +11,6 @@ import {
 } from "recharts";
 import moment from "moment";
 import useEventListener from "@use-it/event-listener";
-import { tsPropertySignature } from "@babel/types";
 
 // this adjusts the sensitivity of the tracker, if set to 0 it will pick up all movement
 const DEVICE_MOTION_THRESHOLD = 0.1;
@@ -19,7 +18,7 @@ const DEVICE_MOTION_THRESHOLD = 0.1;
 function MotionTracker(props) {
   const [motionData, setMotionData] = useState([]);
   const [deviceCanTrackMotion, setDeviceCanTrackMotion] = useState(true);
-  const [isTracking, setTracking] = useState(false)
+  const [isTracking, setTracking] = useState(true)
   const [chartShouldDisplay, setChartToDisplay] = useState(false);
   useEventListener("devicemotion", ({ acceleration, rotationRate }) => {
     const deviceMotionArr = [
@@ -31,7 +30,7 @@ function MotionTracker(props) {
     ];
     if(deviceMotionArr.every(el => el === null)) {setDeviceCanTrackMotion(false)}
     if (deviceMotionArr.some(el => el > DEVICE_MOTION_THRESHOLD)) {
-      if (1) {
+      if (isTracking) {
         setMotionData([
           ...motionData,
           {
@@ -50,7 +49,7 @@ function MotionTracker(props) {
     }
   });
   return deviceCanTrackMotion ? <div>
-    <MotionChart data={motionData} />
+    <MotionChart data={motionData} isTracking={isTracking} setTracking={setTracking}/>
     </div> : <div>Please visit your dashboard on a mobile device to enable motion tracking.</div>;
 }
 
@@ -59,23 +58,16 @@ const formatXAxis = tick => {
 };
 
 const formatYAxis = tick => {
-  if (tick === 0) {
-    return "";
-  }
-  if (tick === 3) {
-    return "low";
-  }
-  if (tick === 6) {
-    return "medium";
-  }
-  if (tick === 9) {
-    return "high";
-  }
+  return tick
 };
 
-const MotionChart = ({ data }) => {
+const MotionChart = ({ data, isTracking, setTracking }) => {
+  const toggleTracking = event => {
+    setTracking(!isTracking)
+  }
+
   return (
-    <div className="graph">
+    <div className="graph" onClick={toggleTracking}>
       <AreaChart width={1000} height={400} data={data} className="motion-chart">
         <Area
           type="monotone"
@@ -87,7 +79,7 @@ const MotionChart = ({ data }) => {
         <XAxis dataKey="time" tickFormatter={formatXAxis}></XAxis>
         <YAxis
           type="number"
-          domain={[0, 9]}
+          domain={[0, 1.5]}
           tickFormatter={formatYAxis}
         ></YAxis>
       </AreaChart>
